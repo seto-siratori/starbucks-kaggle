@@ -1,0 +1,14 @@
+{
+  "id": "shiratoriseto/starbucks-location-fitness-score-predictive-model",
+  "title": "Starbucks Location Fitness Score: Predictive Model",
+  "code_file": "notebook_model_lfs.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "shiratoriseto/manhattan-cafe-wars"
+  ],
+  "keywords": ["regression", "geospatial-analysis", "feature-engineering", "data-visualization"]
+}
