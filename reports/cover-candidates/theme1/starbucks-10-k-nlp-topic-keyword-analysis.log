@@ -1,0 +1,84 @@
+[{"stream_name":"stderr","time":8.427129108,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":8.427230816,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":8.427242842,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":8.427246153,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":9.253445348,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":9.253483572,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":9.253496425,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":9.253500202,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":18.517819612,"data":"Running on Kaggle — data from /kaggle/input/datasets/shiratoriseto/starbucks-30year-nlp-corpus\n"}
+,{"stream_name":"stdout","time":18.517878235,"data":"\n"}
+,{"stream_name":"stdout","time":18.517884086,"data":"Loaded:\n"}
+,{"stream_name":"stdout","time":18.517888372,"data":"  Store counts    : 30 years × 16 columns (FY1996–FY2025)\n"}
+,{"stream_name":"stdout","time":18.51789298,"data":"  Keyword freq    : 30 years × 70 columns\n"}
+,{"stream_name":"stdout","time":18.517897578,"data":"  LDA topics      : 30 years × 7 topics\n"}
+,{"stream_name":"stdout","time":18.517903585,"data":"  Text stats      : 30 years\n"}
+,{"stream_name":"stdout","time":22.076695596,"data":"Growth milestones:\n"}
+,{"stream_name":"stdout","time":22.07673777,"data":"  FY1996:  1,006 stores\n"}
+,{"stream_name":"stdout","time":22.076744567,"data":"  FY2005: 10,241 stores\n"}
+,{"stream_name":"stdout","time":22.076749067,"data":"  FY2014: 21,366 stores\n"}
+,{"stream_name":"stdout","time":22.076753553,"data":"  FY2019: 31,256 stores\n"}
+,{"stream_name":"stdout","time":22.076758147,"data":"  FY2024: 40,199 stores\n"}
+,{"stream_name":"stdout","time":22.076762221,"data":"\n"}
+,{"stream_name":"stdout","time":22.076766087,"data":"  30-year CAGR: 13.6%\n"}
+,{"stream_name":"stdout","time":22.299231352,"data":"FY1996: 7.5% licensed, 0.0% international\n"}
+,{"stream_name":"stdout","time":22.299267962,"data":"FY2025: 49.3% licensed, 58.4% international\n"}
+,{"stream_name":"stdout","time":22.350692252,"data":"Corpus Overview:\n"}
+,{"stream_name":"stdout","time":22.350733921,"data":"  Period          : FY1996–FY2025 (30 years)\n"}
+,{"stream_name":"stdout","time":22.350740049,"data":"  Total words     : 139,656\n"}
+,{"stream_name":"stdout","time":22.350744401,"data":"  Total characters: 981,625\n"}
+,{"stream_name":"stdout","time":22.350748678,"data":"  Avg words/year  : 4,655\n"}
+,{"stream_name":"stdout","time":22.350752674,"data":"  Min (FY1998)    : 2,809 words\n"}
+,{"stream_name":"stdout","time":22.350756669,"data":"  Max (FY2004)    : 7,779 words\n"}
+,{"stream_name":"stdout","time":22.350760687,"data":"  Growth          : 1.9× (FY1996 → FY2025)\n"}
+,{"stream_name":"stdout","time":22.429277062,"data":"Word count growth: 2,928 (FY1996) → 5,498 (FY2025) = 1.9×\n"}
+,{"stream_name":"stdout","time":22.429322782,"data":"Lexical diversity: 0.262 (FY1996) → 0.242 (FY2025)\n"}
+,{"stream_name":"stdout","time":22.429329239,"data":"\n"}
+,{"stream_name":"stdout","time":22.429334442,"data":"The filing grew 1.9× longer, but the vocabulary did not expand proportionally.\n"}
+,{"stream_name":"stdout","time":22.429359716,"data":"This reflects regulatory boilerplate expansion — more words, but increasingly repetitive.\n"}
+,{"stream_name":"stdout","time":22.480390513,"data":"compute_keyword_trends() defined — apply to any corpus of annual documents.\n"}
+,{"stream_name":"stdout","time":22.48044039,"data":"\n"}
+,{"stream_name":"stdout","time":22.480464931,"data":"Using pre-computed data: 30 years × 70 columns\n"}
+,{"stream_name":"stdout","time":22.546173428,"data":"\"coffee\" frequency: 222.0/10K (FY1996) → 94.7/10K (FY2025) = 57% decline\n"}
+,{"stream_name":"stdout","time":22.611772257,"data":"\"experience\": absent until FY1997, peaked at 32.0/10K in FY2023\n"}
+,{"stream_name":"stdout","time":22.692697791,"data":"\"partner\" frequency FY2025: 28.6/10K\n"}
+,{"stream_name":"stdout","time":22.692735094,"data":"\"employee(s)\" frequency FY2025: 7.3/10K\n"}
+,{"stream_name":"stdout","time":22.757574258,"data":"\"china\" peak: FY2018 at 41.6/10K\n"}
+,{"stream_name":"stdout","time":22.757617544,"data":"\"china\" FY2025: 15.4/10K\n"}
+,{"stream_name":"stdout","time":22.833132428,"data":"\"digital\"+\"mobile\" combined: zero until FY2004, peaked at 29.9/10K in FY2023\n"}
+,{"stream_name":"stdout","time":26.568164832,"data":"Pearson r = 0.902, p = 9.71e-12\n"}
+,{"stream_name":"stdout","time":26.568207835,"data":"\n"}
+,{"stream_name":"stdout","time":26.568213815,"data":"This means 81% of the variance in store count is shared with digital/mobile language frequency.\n"}
+,{"stream_name":"stdout","time":26.568218204,"data":"Correlation ≠ causation — both are driven by the same underlying strategic shift.\n"}
+,{"stream_name":"stdout","time":26.661118441,"data":"\n"}
+,{"stream_name":"stdout","time":26.661148355,"data":"Note: Labels are manually assigned based on top-weighted words from the trained LDA model.\n"}
+,{"stream_name":"stdout","time":26.661154181,"data":"The algorithm itself produces only word distributions — interpretation is the analyst's job.\n"}
+,{"stream_name":"stdout","time":26.821965032,"data":"People/Culture/ESG topic share:\n"}
+,{"stream_name":"stdout","time":26.822065924,"data":"  Pre-2020 average : 7.5%\n"}
+,{"stream_name":"stdout","time":26.82207862,"data":"  Post-2020 average: 27.5%\n"}
+,{"stream_name":"stdout","time":26.822083317,"data":"  Change           : 3.6× increase\n"}
+,{"stream_name":"stdout","time":27.000993034,"data":"Key correlations:\n"}
+,{"stream_name":"stdout","time":27.001053596,"data":"  \"digital\"+\"mobile\"        vs Total Stores   : r = +0.902 (***)\n"}
+,{"stream_name":"stdout","time":27.001064043,"data":"  \"digital\"+\"mobile\"        vs Intl Stores    : r = +0.935 (***)\n"}
+,{"stream_name":"stdout","time":27.001069126,"data":"  \"experience\"              vs Total Stores   : r = +0.945 (***)\n"}
+,{"stream_name":"stdout","time":27.001073527,"data":"  \"experience\"              vs Intl Stores    : r = +0.914 (***)\n"}
+,{"stream_name":"stdout","time":27.001077817,"data":"  \"china\"                   vs Total Stores   : r = +0.652 (***)\n"}
+,{"stream_name":"stdout","time":27.00108216,"data":"  \"china\"                   vs Intl Stores    : r = +0.522 (**)\n"}
+,{"stream_name":"stdout","time":27.001086436,"data":"  \"coffee\"                  vs Total Stores   : r = -0.715 (***)\n"}
+,{"stream_name":"stdout","time":27.001090668,"data":"  \"coffee\"                  vs Intl Stores    : r = -0.710 (***)\n"}
+,{"stream_name":"stdout","time":29.476796787,"data":"Hero chart saved as hero_chart.png\n"}
+,{"stream_name":"stderr","time":33.527596325,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":33.527655309,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":33.720759277,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":33.720792,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":34.430511532,"data":"/usr/local/lib/python3.12/dist-packages/traitlets/traitlets.py:2915: FutureWarning: --Exporter.preprocessors=[\"remove_papermill_header.RemovePapermillHeader\"] for containers is deprecated in traitlets 5.0. You can pass `--Exporter.preprocessors item` ... multiple times to add items to a list.\n"}
+,{"stream_name":"stderr","time":34.430559169,"data":"  warn(\n"}
+,{"stream_name":"stderr","time":34.467540603,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":34.900136924,"data":"[NbConvertApp] Writing 659466 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":38.029292295,"data":"/usr/local/lib/python3.12/dist-packages/traitlets/traitlets.py:2915: FutureWarning: --Exporter.preprocessors=[\"nbconvert.preprocessors.ExtractOutputPreprocessor\"] for containers is deprecated in traitlets 5.0. You can pass `--Exporter.preprocessors item` ... multiple times to add items to a list.\n"}
+,{"stream_name":"stderr","time":38.02933318,"data":"  warn(\n"}
+,{"stream_name":"stderr","time":38.060169465,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":39.334253197,"data":"[NbConvertApp] Support files will be in __results___files/\n"}
+,{"stream_name":"stderr","time":39.334282703,"data":"[NbConvertApp] Making directory __results___files\n"}
+,{"stream_name":"stderr","time":39.334919672,"data":"[NbConvertApp] Writing 640075 bytes to __results__.html\n"}
+]

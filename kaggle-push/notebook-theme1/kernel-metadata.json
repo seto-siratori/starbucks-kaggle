@@ -1,0 +1,14 @@
+{
+  "id": "shiratoriseto/starbucks-10-k-nlp-topic-keyword-analysis",
+  "title": "Starbucks 10-K NLP: Topic & Keyword Analysis",
+  "code_file": "notebook_theme1_nlp.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "dataset_sources": ["shiratoriseto/starbucks-30year-nlp-corpus"],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "keywords": ["nlp", "text-mining", "data-visualization"]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "shiratoriseto/starbucks-nlp-x-spatial",
+  "title": "Starbucks NLP x Spatial",
+  "code_file": "notebook_g_cross_theme.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "shiratoriseto/starbucks-30year-nlp-corpus",
+    "shiratoriseto/manhattan-cafe-wars"
+  ],
+  "keywords": ["nlp", "geospatial-analysis", "data-visualization", "time-series"]
+}

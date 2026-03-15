@@ -1,0 +1,841 @@
+{
+  "title": "Manhattan Cafe Wars: Starbucks & Subway",
+  "subtitle": "171 Starbucks enriched with PLUTO, MTA, Census, LFS & pedestrian counts",
+  "description": "## What's inside\n\nNine analysis-ready files covering Manhattan's cafe landscape, transit infrastructure, building attributes, demographics, and location fitness scoring:\n\n### Core files (v1)\n1. **manhattan_starbucks_osm.csv** — 171 Starbucks locations from OpenStreetMap with addresses and amenity attributes\n2. **manhattan_cafes_osm.csv** — 1,335 cafes (Starbucks, Dunkin', branded chains, and independents) with brand classification\n3. **manhattan_mta_ridership_summary.csv** — 123 subway station complexes with average daily ridership (Q4 2024)\n\n### Added in v2\n4. **manhattan_tracts_lisa.geojson** — Census Tract polygons with LISA spatial autocorrelation cluster labels (High-High, Low-Low, etc.)\n5. **mta_station_clusters.csv** — 123 stations classified into 4 ridership-pattern clusters (Morning Peak, Balanced, Midday-Heavy, Evening Peak)\n\n### New in v3\n6. **stores_enriched_v4.csv** — 171 Starbucks x 63 columns: everything from v3's 51 columns + 12 new columns including tract-level cafe counts, MTA ridership, pedestrian counts, population density, demand/supply indices, Location Fitness Score, LISA cluster, and nearest pedestrian counter (replaces stores_enriched_v3.csv)\n7. **tract_demand_supply.csv** — 309 Census Tracts x 24 columns: comprehensive demand-supply scoring for all Manhattan tracts, including ridership-based and pedestrian-based demand proxy indices, supply index, and Location Fitness Scores (LFS)\n8. **manhattan_pedestrian_counts.csv** — NYC DOT Bi-Annual Pedestrian Counts at 36 Manhattan locations (2007-2025), with AM/PM/Midday counts per survey period\n\n## Use cases\n\n- Spatial competition analysis (Starbucks vs. competitors)\n- Spatial autocorrelation (Moran's I, LISA hotspot detection)\n- Point pattern analysis (Ripley's K / Besag's L function)\n- Transit-oriented location scoring\n- Walk-distance network analysis with OSMnx\n- Demand proxy modeling using subway ridership and pedestrian flow\n- Location Fitness Score (LFS) analysis and site selection\n- Demand-supply gap identification for new store candidates\n- Urban retail geography research\n- Pedestrian flow temporal analysis (seasonal and multi-year trends)\n\n## Data sources & licenses\n\n| File | Source | License |\n|---|---|---|\n| Starbucks & Cafes | OpenStreetMap via Overpass API | ODbL 1.0 |\n| MTA Ridership | data.ny.gov (MTA Subway Hourly Ridership) | OPEN NY Terms |\n| Building attributes | MapPLUTO (NYC Dept. of City Planning) | NYC Open Data Terms |\n| Demographics | US Census ACS 2022 5-Year Estimates | Public domain |\n| Tract boundaries | TIGER/Line Shapefiles (Census Bureau) | Public domain |\n| Pedestrian Counts | NYC DOT Bi-Annual Pedestrian Counts (NYC Open Data) | NYC Open Data Terms |\n\n**OpenStreetMap attribution**: (c) OpenStreetMap contributors. Data available under the Open Database License (ODbL) v1.0.\n\n**MTA data**: Provided by the Metropolitan Transportation Authority via New York State Open Data portal.\n\n**NYC DOT data**: Provided by the NYC Department of Transportation via NYC Open Data.\n\n## Coordinate Reference System\n\nAll coordinates are in **WGS84 (EPSG:4326)** — standard latitude/longitude.\n\n## Column descriptions\n\n### manhattan_starbucks_osm.csv (171 rows x 17 columns)\n\n| Column | Type | Description |\n|---|---|---|\n| osm_id | int | OpenStreetMap element ID |\n| osm_element | str | OSM element type (node/way) |\n| name | str | Store name |\n| brand | str | Brand name (Starbucks) |\n| addr_street | str | Street name (18% missing) |\n| addr_housenumber | str | House number (18% missing) |\n| addr_postcode | str | ZIP code (18% missing) |\n| addr_city | str | City name |\n| phone | str | Phone number (24% missing) |\n| opening_hours | str | Opening hours in OSM format (46% missing) |\n| wheelchair | str | Wheelchair accessibility |\n| outdoor_seating | str | Outdoor seating available |\n| indoor_seating | str | Indoor seating available |\n| drive_through | str | Drive-through available |\n| takeaway | str | Takeaway available |\n| lat | float | Latitude (WGS84) |\n| lon | float | Longitude (WGS84) |\n\n### manhattan_cafes_osm.csv (1,335 rows x 11 columns)\n\n| Column | Type | Description |\n|---|---|---|\n| osm_id | int | OpenStreetMap element ID |\n| osm_element | str | OSM element type |\n| name | str | Cafe name ('Unknown Cafe' if missing) |\n| brand | str | Brand name (NaN for independents) |\n| amenity | str | OSM amenity tag |\n| cuisine | str | Cuisine type tag |\n| addr_street | str | Street name |\n| addr_housenumber | str | House number |\n| lat | float | Latitude (WGS84) |\n| lon | float | Longitude (WGS84) |\n| brand_category | str | One of: starbucks, dunkin, branded, independent |\n\n### manhattan_mta_ridership_summary.csv (123 rows x 8 columns)\n\n| Column | Type | Description |\n|---|---|---|\n| station_complex_id | str | MTA station complex identifier |\n| station_name | str | Station name with subway lines |\n| lat | float | Latitude (WGS84) |\n| lon | float | Longitude (WGS84) |\n| avg_daily_ridership | int | Average daily ridership (all fare types combined) |\n| total_ridership_q4_2024 | int | Total ridership Oct-Dec 2024 |\n| data_period | str | Data collection period |\n| data_days | int | Number of days in the period (92) |\n\n### stores_enriched_v4.csv (171 rows x 63 columns)\n\n| Column | Type | Description |\n|---|---|---|\n| osm_id – takeaway | various | Same as manhattan_starbucks_osm.csv (17 columns) |\n| pluto_bbl | float | NYC Borough-Block-Lot identifier |\n| pluto_landuse | float | PLUTO land use code |\n| pluto_bldgclass | str | Building class code |\n| pluto_numfloors | float | Number of floors (9 missing) |\n| pluto_yearbuilt | float | Year built |\n| pluto_unitstotal | float | Total residential units |\n| pluto_retailarea | float | Retail floor area in sq ft (8 missing) |\n| pluto_assesstot | float | Total assessed value |\n| pluto_comarea | float | Commercial floor area in sq ft (8 missing) |\n| pluto_lotarea | float | Lot area in sq ft |\n| pluto_zonedist1 | str | Primary zoning district |\n| pluto_dist_m | float | Distance to matched PLUTO lot (meters) |\n| mta_station_id | str | Nearest MTA station complex ID |\n| mta_station_name | str | Nearest station name |\n| mta_dist_m | float | Distance to nearest station (meters) |\n| mta_avg_daily_ridership | int | Nearest station's average daily ridership |\n| n_starbucks_250m | int | Starbucks count within 250m |\n| n_dunkin_250m | int | Dunkin' count within 250m |\n| n_other_cafe_250m | int | Other cafe count within 250m |\n| n_starbucks_500m | int | Starbucks count within 500m |\n| n_dunkin_500m | int | Dunkin' count within 500m |\n| n_other_cafe_500m | int | Other cafe count within 500m |\n| n_starbucks_1000m | int | Starbucks count within 1km |\n| n_dunkin_1000m | int | Dunkin' count within 1km |\n| n_other_cafe_1000m | int | Other cafe count within 1km |\n| nearest_competitor_dist_m | float | Distance to nearest non-Starbucks cafe (meters) |\n| nearest_starbucks_dist_m | float | Distance to nearest other Starbucks (meters) |\n| census_tract_id | int | Census Tract GEOID |\n| tract_population | int | Tract total population (ACS 2022) |\n| tract_median_income | float | Tract median household income in dollars (3 missing) |\n| tract_pct_walk_commute | float | Percent of workers who walk to work |\n| tract_pct_bachelors_plus | float | Percent of adults with bachelor's degree or higher |\n| station_cluster | int | MTA station ridership-pattern cluster (0-3) |\n| station_cluster_name | str | Cluster label: Morning Peak / Balanced / Midday-Heavy / Evening Peak |\n| ped_count_nearest | float | Pedestrian count at the nearest NYC DOT counter location |\n| ped_dist_m | float | Distance to the nearest pedestrian count location (meters) |\n| tract_starbucks_count | int | Number of Starbucks in the same Census Tract |\n| tract_total_cafes | int | Total number of cafes in the same Census Tract |\n| tract_competitor_cafes | int | Number of non-Starbucks cafes in the same Census Tract |\n| tract_mta_ridership | float | Total MTA ridership aggregated at the Census Tract level |\n| tract_avg_ped_count | float | Average pedestrian count at tract level |\n| tract_pop_density | float | Population density of the Census Tract (people per sq km) |\n| demand_proxy_index | float | Composite demand proxy index (ridership + pedestrian + population) |\n| supply_index | float | Supply concentration index (cafe density relative to demand) |\n| location_fitness_score | float | Location Fitness Score: demand-supply balance metric (higher = more underserved demand) |\n| tract_lisa_cluster | str | LISA spatial autocorrelation cluster for the tract (High-High, Low-Low, etc.) |\n\n### tract_demand_supply.csv (309 rows x 24 columns)\n\n| Column | Type | Description |\n|---|---|---|\n| GEOID | str | Census Tract FIPS code |\n| ALAND | int | Land area in square meters |\n| AWATER | int | Water area in square meters |\n| NAMELSAD | str | Tract name |\n| starbucks_count | int | Number of Starbucks in this tract |\n| lisa_cluster | str | LISA classification: High-High, Low-Low, High-Low, Low-High, or Not Significant |\n| tract_starbucks_count | int | Starbucks count (same as starbucks_count) |\n| tract_total_cafes | int | Total number of cafes in the tract |\n| tract_competitor_cafes | int | Number of non-Starbucks cafes |\n| tract_mta_ridership | float | Total MTA daily ridership attributed to the tract |\n| tract_avg_ped_count | float | Average pedestrian count in the tract |\n| tract_population | int | Tract total population (ACS 2022) |\n| tract_median_income | float | Tract median household income |\n| tract_pct_walk_commute | float | Percent of workers who walk to work |\n| tract_pct_bachelors_plus | float | Percent with bachelor's degree or higher |\n| tract_pop_density | float | Population density (people per sq km) |\n| tract_avg_ped_count_filled | float | Pedestrian count with missing values filled |\n| dpi_ridership | float | Demand proxy sub-index: MTA ridership component |\n| dpi_pedestrian | float | Demand proxy sub-index: pedestrian flow component |\n| dpi_population | float | Demand proxy sub-index: population component |\n| demand_proxy_index | float | Composite Demand Proxy Index (0-1 scale) |\n| supply_index | float | Supply concentration index (cafe count relative to area) |\n| supply_normalized | float | Normalized supply index (0-1 scale) |\n| location_fitness_score | float | Location Fitness Score: demand minus supply (higher = underserved) |\n\n### manhattan_pedestrian_counts.csv (36 rows x 113 columns)\n\n| Column | Type | Description |\n|---|---|---|\n| the_geom | str | Point geometry (WKT) |\n| OBJECTID | int | Unique object identifier |\n| Loc | int | Location identifier |\n| Borough | str | Borough name (Manhattan) |\n| Street_Nam | str | Street name of the count location |\n| From_Stree | str | Cross street (from) |\n| To_Street | str | Cross street (to) |\n| Iex | str | Index/intersection identifier |\n| {Period}_AM | int | AM peak pedestrian count for the survey period (e.g., May07_AM, Sept07_AM, ... May25_AM) |\n| {Period}_PM | int | PM peak pedestrian count for the survey period |\n| {Period}_MD | int | Midday pedestrian count for the survey period |\n\nSurvey periods span from May 2007 to May 2025, conducted bi-annually (May and September/October), with 3 time slots each (AM, PM, Midday).\n\n### manhattan_tracts_lisa.geojson (289 tracts)\n\nCensus Tract polygons with LISA (Local Indicators of Spatial Association) results:\n\n| Property | Type | Description |\n|---|---|---|\n| GEOID | str | Census Tract FIPS code |\n| NAMELSAD | str | Tract name |\n| geometry | Polygon | Tract boundary (WGS84) |\n| starbucks_count | int | Number of Starbucks in this tract |\n| lisa_cluster | str | LISA classification: High-High, Low-Low, High-Low, Low-High, or Not Significant |\n| lisa_q | int | LISA quadrant (1-4) |\n| lisa_p | float | LISA p-value |\n| lisa_I | float | Local Moran's I statistic |\n\n### mta_station_clusters.csv (123 rows x 3 columns)\n\n| Column | Type | Description |\n|---|---|---|\n| station_complex_id | str | MTA station complex identifier (join key) |\n| cluster | int | Cluster assignment (0-3) |\n| cluster_name | str | Morning Peak (Residential) / Balanced (Transit Hub) / Midday-Heavy (Tourism) / Evening Peak (Office) |\n\n## Missing data policy\n\n- **lat/lon**: Never missing (required fields)\n- **name**: Never missing (filled with 'Unknown Cafe' if absent in OSM)\n- **brand**: NaN for independent cafes (by design, not an error)\n- **Address fields**: NaN where OSM contributors haven't added the information\n- **Ridership**: All 123 stations have ridership > 0\n- **PLUTO fields**: numfloors (9 missing), retailarea/comarea (8 missing) — buildings where PLUTO lacks data\n- **tract_median_income**: 3 missing — Census tracts with suppressed income data\n- **ped_count_nearest**: Available for all 171 stores (interpolated from nearest DOT counter)\n- **tract_avg_ped_count**: Some tracts have no nearby pedestrian counter; filled via tract_avg_ped_count_filled in tract_demand_supply.csv\n\n## Related notebooks\n\n| Notebook | Theme | Link |\n|----------|-------|------|\n| Manhattan Cafe Wars | Theme 0: EDA & competitor mapping | [Open](https://www.kaggle.com/code/shiratoriseto/manhattan-cafe-wars-starbucks-vs-1200-competitors) |\n| Starbucks 10-K NLP | Theme 1: keyword trends, LDA topics, NLP × store count | [Open](https://www.kaggle.com/code/shiratoriseto/starbucks-10-k-nlp-topic-keyword-analysis) |\n| Starbucks Spatial Clustering | Theme 2A: Moran's I, LISA, Ripley's K | [Open](https://www.kaggle.com/code/shiratoriseto/starbucks-spatial-clustering) |\n| Starbucks Location Fitness | Theme 2B: demand-supply scoring & backtest | [Open](https://www.kaggle.com/code/shiratoriseto/starbucks-location-fitness) |\n| Starbucks Data Pipeline | Pipeline: EDGAR & OSM to CSV, data quality report | [Open](https://www.kaggle.com/code/shiratoriseto/starbucks-data-pipeline-edgar-osm-to-csv) |\n\n**Related dataset:** [Starbucks 30-Year 10-K NLP Corpus](https://www.kaggle.com/datasets/shiratoriseto/starbucks-30year-nlp-corpus) — NLP data for Theme 1\n\n\n## Updates\n\n- **v1.0** (2026-03-12): Initial release — 3 CSV files with Q4 2024 ridership\n- **v2.0** (2026-03-13): Added stores_enriched_v3.csv (PLUTO + MTA + competitors + Census joined), manhattan_tracts_lisa.geojson (LISA clusters), mta_station_clusters.csv (ridership pattern clusters)\n- **v3.0** (2026-03-13): Replaced stores_enriched_v3 with stores_enriched_v4 (51 -> 63 columns: tract-level aggregates, demand/supply indices, Location Fitness Score, pedestrian counts). Added tract_demand_supply.csv (309 tracts with full LFS scoring). Added manhattan_pedestrian_counts.csv (NYC DOT bi-annual pedestrian counts at 36 Manhattan locations, 2007-2025).",
+  "id": "shiratoriseto/manhattan-cafe-wars",
+  "licenses": [
+    {
+      "name": "ODbL-1.0",
+      "nameNice": "Open Data Commons Open Database License (ODbL) v1.0"
+    }
+  ],
+  "keywords": [
+    "cities and urban areas",
+    "exploratory data analysis",
+    "geospatial analysis",
+    "data visualization",
+    "restaurants"
+  ],
+  "resources": [
+    {
+      "path": "manhattan_starbucks_osm.csv",
+      "description": "171 Starbucks locations in Manhattan from OpenStreetMap",
+      "schema": {
+        "fields": [
+          {
+            "name": "osm_id",
+            "type": "integer",
+            "description": "OpenStreetMap element ID"
+          },
+          {
+            "name": "osm_element",
+            "type": "string",
+            "description": "OSM element type (node/way)"
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "description": "Store name"
+          },
+          {
+            "name": "brand",
+            "type": "string",
+            "description": "Brand name (Starbucks)"
+          },
+          {
+            "name": "addr_street",
+            "type": "string",
+            "description": "Street name"
+          },
+          {
+            "name": "addr_housenumber",
+            "type": "string",
+            "description": "House number"
+          },
+          {
+            "name": "addr_postcode",
+            "type": "string",
+            "description": "ZIP code"
+          },
+          {
+            "name": "addr_city",
+            "type": "string",
+            "description": "City name"
+          },
+          {
+            "name": "phone",
+            "type": "string",
+            "description": "Phone number"
+          },
+          {
+            "name": "opening_hours",
+            "type": "string",
+            "description": "Opening hours in OSM format"
+          },
+          {
+            "name": "wheelchair",
+            "type": "string",
+            "description": "Wheelchair accessibility"
+          },
+          {
+            "name": "outdoor_seating",
+            "type": "string",
+            "description": "Outdoor seating available"
+          },
+          {
+            "name": "indoor_seating",
+            "type": "string",
+            "description": "Indoor seating available"
+          },
+          {
+            "name": "drive_through",
+            "type": "string",
+            "description": "Drive-through available"
+          },
+          {
+            "name": "takeaway",
+            "type": "string",
+            "description": "Takeaway available"
+          },
+          {
+            "name": "lat",
+            "type": "number",
+            "description": "Latitude (WGS84)"
+          },
+          {
+            "name": "lon",
+            "type": "number",
+            "description": "Longitude (WGS84)"
+          }
+        ]
+      }
+    },
+    {
+      "path": "manhattan_cafes_osm.csv",
+      "description": "1,335 cafes in Manhattan from OpenStreetMap with brand classification",
+      "schema": {
+        "fields": [
+          {
+            "name": "osm_id",
+            "type": "integer",
+            "description": "OpenStreetMap element ID"
+          },
+          {
+            "name": "osm_element",
+            "type": "string",
+            "description": "OSM element type"
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "description": "Cafe name"
+          },
+          {
+            "name": "brand",
+            "type": "string",
+            "description": "Brand name (NaN for independents)"
+          },
+          {
+            "name": "amenity",
+            "type": "string",
+            "description": "OSM amenity tag"
+          },
+          {
+            "name": "cuisine",
+            "type": "string",
+            "description": "Cuisine type tag"
+          },
+          {
+            "name": "addr_street",
+            "type": "string",
+            "description": "Street name"
+          },
+          {
+            "name": "addr_housenumber",
+            "type": "string",
+            "description": "House number"
+          },
+          {
+            "name": "lat",
+            "type": "number",
+            "description": "Latitude (WGS84)"
+          },
+          {
+            "name": "lon",
+            "type": "number",
+            "description": "Longitude (WGS84)"
+          },
+          {
+            "name": "brand_category",
+            "type": "string",
+            "description": "starbucks, dunkin, branded, or independent"
+          }
+        ]
+      }
+    },
+    {
+      "path": "manhattan_mta_ridership_summary.csv",
+      "description": "123 MTA subway station complexes with average daily ridership (Q4 2024)",
+      "schema": {
+        "fields": [
+          {
+            "name": "station_complex_id",
+            "type": "string",
+            "description": "MTA station complex identifier"
+          },
+          {
+            "name": "station_name",
+            "type": "string",
+            "description": "Station name with subway lines"
+          },
+          {
+            "name": "lat",
+            "type": "number",
+            "description": "Latitude (WGS84)"
+          },
+          {
+            "name": "lon",
+            "type": "number",
+            "description": "Longitude (WGS84)"
+          },
+          {
+            "name": "avg_daily_ridership",
+            "type": "integer",
+            "description": "Average daily ridership"
+          },
+          {
+            "name": "total_ridership_q4_2024",
+            "type": "integer",
+            "description": "Total ridership Oct-Dec 2024"
+          },
+          {
+            "name": "data_period",
+            "type": "string",
+            "description": "Data collection period"
+          },
+          {
+            "name": "data_days",
+            "type": "integer",
+            "description": "Number of days in the period"
+          }
+        ]
+      }
+    },
+    {
+      "path": "stores_enriched_v4.csv",
+      "description": "171 Starbucks x 63 columns: OSM + PLUTO + MTA + competitors + Census + LFS + pedestrian counts",
+      "schema": {
+        "fields": [
+          {
+            "name": "osm_id",
+            "type": "integer",
+            "description": "OpenStreetMap element ID"
+          },
+          {
+            "name": "osm_element",
+            "type": "string",
+            "description": "OSM element type"
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "description": "Store name"
+          },
+          {
+            "name": "brand",
+            "type": "string",
+            "description": "Brand name"
+          },
+          {
+            "name": "addr_street",
+            "type": "string",
+            "description": "Street name"
+          },
+          {
+            "name": "addr_housenumber",
+            "type": "string",
+            "description": "House number"
+          },
+          {
+            "name": "addr_postcode",
+            "type": "string",
+            "description": "ZIP code"
+          },
+          {
+            "name": "addr_city",
+            "type": "string",
+            "description": "City name"
+          },
+          {
+            "name": "phone",
+            "type": "string",
+            "description": "Phone number"
+          },
+          {
+            "name": "opening_hours",
+            "type": "string",
+            "description": "Opening hours"
+          },
+          {
+            "name": "wheelchair",
+            "type": "string",
+            "description": "Wheelchair accessibility"
+          },
+          {
+            "name": "outdoor_seating",
+            "type": "string",
+            "description": "Outdoor seating"
+          },
+          {
+            "name": "indoor_seating",
+            "type": "string",
+            "description": "Indoor seating"
+          },
+          {
+            "name": "drive_through",
+            "type": "string",
+            "description": "Drive-through"
+          },
+          {
+            "name": "takeaway",
+            "type": "string",
+            "description": "Takeaway"
+          },
+          {
+            "name": "lat",
+            "type": "number",
+            "description": "Latitude (WGS84)"
+          },
+          {
+            "name": "lon",
+            "type": "number",
+            "description": "Longitude (WGS84)"
+          },
+          {
+            "name": "pluto_bbl",
+            "type": "number",
+            "description": "NYC Borough-Block-Lot identifier"
+          },
+          {
+            "name": "pluto_landuse",
+            "type": "number",
+            "description": "PLUTO land use code"
+          },
+          {
+            "name": "pluto_bldgclass",
+            "type": "string",
+            "description": "Building class code"
+          },
+          {
+            "name": "pluto_numfloors",
+            "type": "number",
+            "description": "Number of floors"
+          },
+          {
+            "name": "pluto_yearbuilt",
+            "type": "number",
+            "description": "Year built"
+          },
+          {
+            "name": "pluto_unitstotal",
+            "type": "number",
+            "description": "Total residential units"
+          },
+          {
+            "name": "pluto_retailarea",
+            "type": "number",
+            "description": "Retail floor area in sq ft"
+          },
+          {
+            "name": "pluto_assesstot",
+            "type": "number",
+            "description": "Total assessed value"
+          },
+          {
+            "name": "pluto_comarea",
+            "type": "number",
+            "description": "Commercial floor area in sq ft"
+          },
+          {
+            "name": "pluto_lotarea",
+            "type": "number",
+            "description": "Lot area in sq ft"
+          },
+          {
+            "name": "pluto_zonedist1",
+            "type": "string",
+            "description": "Primary zoning district"
+          },
+          {
+            "name": "pluto_dist_m",
+            "type": "number",
+            "description": "Distance to matched PLUTO lot (meters)"
+          },
+          {
+            "name": "mta_station_id",
+            "type": "string",
+            "description": "Nearest MTA station complex ID"
+          },
+          {
+            "name": "mta_station_name",
+            "type": "string",
+            "description": "Nearest station name"
+          },
+          {
+            "name": "mta_dist_m",
+            "type": "number",
+            "description": "Distance to nearest station (meters)"
+          },
+          {
+            "name": "mta_avg_daily_ridership",
+            "type": "integer",
+            "description": "Nearest station avg daily ridership"
+          },
+          {
+            "name": "n_starbucks_250m",
+            "type": "integer",
+            "description": "Starbucks count within 250m"
+          },
+          {
+            "name": "n_dunkin_250m",
+            "type": "integer",
+            "description": "Dunkin count within 250m"
+          },
+          {
+            "name": "n_other_cafe_250m",
+            "type": "integer",
+            "description": "Other cafe count within 250m"
+          },
+          {
+            "name": "n_starbucks_500m",
+            "type": "integer",
+            "description": "Starbucks count within 500m"
+          },
+          {
+            "name": "n_dunkin_500m",
+            "type": "integer",
+            "description": "Dunkin count within 500m"
+          },
+          {
+            "name": "n_other_cafe_500m",
+            "type": "integer",
+            "description": "Other cafe count within 500m"
+          },
+          {
+            "name": "n_starbucks_1000m",
+            "type": "integer",
+            "description": "Starbucks count within 1km"
+          },
+          {
+            "name": "n_dunkin_1000m",
+            "type": "integer",
+            "description": "Dunkin count within 1km"
+          },
+          {
+            "name": "n_other_cafe_1000m",
+            "type": "integer",
+            "description": "Other cafe count within 1km"
+          },
+          {
+            "name": "nearest_competitor_dist_m",
+            "type": "number",
+            "description": "Distance to nearest non-Starbucks cafe"
+          },
+          {
+            "name": "nearest_starbucks_dist_m",
+            "type": "number",
+            "description": "Distance to nearest other Starbucks"
+          },
+          {
+            "name": "census_tract_id",
+            "type": "integer",
+            "description": "Census Tract GEOID"
+          },
+          {
+            "name": "tract_population",
+            "type": "integer",
+            "description": "Tract population (ACS 2022)"
+          },
+          {
+            "name": "tract_median_income",
+            "type": "number",
+            "description": "Median household income"
+          },
+          {
+            "name": "tract_pct_walk_commute",
+            "type": "number",
+            "description": "Percent walking to work"
+          },
+          {
+            "name": "tract_pct_bachelors_plus",
+            "type": "number",
+            "description": "Percent with bachelor's+"
+          },
+          {
+            "name": "station_cluster",
+            "type": "integer",
+            "description": "MTA ridership-pattern cluster (0-3)"
+          },
+          {
+            "name": "station_cluster_name",
+            "type": "string",
+            "description": "Cluster label"
+          },
+          {
+            "name": "ped_count_nearest",
+            "type": "number",
+            "description": "Pedestrian count at nearest DOT counter"
+          },
+          {
+            "name": "ped_dist_m",
+            "type": "number",
+            "description": "Distance to nearest pedestrian counter"
+          },
+          {
+            "name": "tract_starbucks_count",
+            "type": "integer",
+            "description": "Starbucks in same Census Tract"
+          },
+          {
+            "name": "tract_total_cafes",
+            "type": "integer",
+            "description": "Total cafes in same tract"
+          },
+          {
+            "name": "tract_competitor_cafes",
+            "type": "integer",
+            "description": "Non-Starbucks cafes in same tract"
+          },
+          {
+            "name": "tract_mta_ridership",
+            "type": "number",
+            "description": "Tract-level MTA ridership"
+          },
+          {
+            "name": "tract_avg_ped_count",
+            "type": "number",
+            "description": "Tract-level avg pedestrian count"
+          },
+          {
+            "name": "tract_pop_density",
+            "type": "number",
+            "description": "Population density (people/sq km)"
+          },
+          {
+            "name": "demand_proxy_index",
+            "type": "number",
+            "description": "Composite demand proxy index (0-1)"
+          },
+          {
+            "name": "supply_index",
+            "type": "number",
+            "description": "Supply concentration index"
+          },
+          {
+            "name": "location_fitness_score",
+            "type": "number",
+            "description": "Demand-supply balance score"
+          },
+          {
+            "name": "tract_lisa_cluster",
+            "type": "string",
+            "description": "LISA cluster for the tract"
+          }
+        ]
+      }
+    },
+    {
+      "path": "manhattan_tracts_lisa.geojson",
+      "description": "289 Census Tract polygons with LISA spatial autocorrelation clusters",
+      "schema": {
+        "fields": [
+          {
+            "name": "GEOID",
+            "type": "string",
+            "description": "Census Tract FIPS code"
+          },
+          {
+            "name": "NAMELSAD",
+            "type": "string",
+            "description": "Tract name"
+          },
+          {
+            "name": "starbucks_count",
+            "type": "integer",
+            "description": "Number of Starbucks in tract"
+          },
+          {
+            "name": "lisa_cluster",
+            "type": "string",
+            "description": "LISA classification"
+          },
+          {
+            "name": "lisa_q",
+            "type": "integer",
+            "description": "LISA quadrant (1-4)"
+          },
+          {
+            "name": "lisa_p",
+            "type": "number",
+            "description": "LISA p-value"
+          },
+          {
+            "name": "lisa_I",
+            "type": "number",
+            "description": "Local Moran's I statistic"
+          }
+        ]
+      }
+    },
+    {
+      "path": "mta_station_clusters.csv",
+      "description": "123 MTA stations classified into 4 ridership-pattern clusters",
+      "schema": {
+        "fields": [
+          {
+            "name": "station_complex_id",
+            "type": "string",
+            "description": "MTA station complex identifier"
+          },
+          {
+            "name": "cluster",
+            "type": "integer",
+            "description": "Cluster assignment (0-3)"
+          },
+          {
+            "name": "cluster_name",
+            "type": "string",
+            "description": "Morning Peak / Balanced / Midday-Heavy / Evening Peak"
+          }
+        ]
+      }
+    },
+    {
+      "path": "tract_demand_supply.csv",
+      "description": "309 Census Tracts x 24 columns: demand proxy index, supply index, and LFS for all Manhattan tracts",
+      "schema": {
+        "fields": [
+          {
+            "name": "GEOID",
+            "type": "string",
+            "description": "Census Tract FIPS code"
+          },
+          {
+            "name": "ALAND",
+            "type": "integer",
+            "description": "Land area in square meters"
+          },
+          {
+            "name": "AWATER",
+            "type": "integer",
+            "description": "Water area in square meters"
+          },
+          {
+            "name": "NAMELSAD",
+            "type": "string",
+            "description": "Tract name"
+          },
+          {
+            "name": "starbucks_count",
+            "type": "integer",
+            "description": "Number of Starbucks in tract"
+          },
+          {
+            "name": "lisa_cluster",
+            "type": "string",
+            "description": "LISA classification"
+          },
+          {
+            "name": "tract_starbucks_count",
+            "type": "integer",
+            "description": "Starbucks count"
+          },
+          {
+            "name": "tract_total_cafes",
+            "type": "integer",
+            "description": "Total cafes in tract"
+          },
+          {
+            "name": "tract_competitor_cafes",
+            "type": "integer",
+            "description": "Non-Starbucks cafes"
+          },
+          {
+            "name": "tract_mta_ridership",
+            "type": "number",
+            "description": "Total MTA daily ridership"
+          },
+          {
+            "name": "tract_avg_ped_count",
+            "type": "number",
+            "description": "Average pedestrian count"
+          },
+          {
+            "name": "tract_population",
+            "type": "integer",
+            "description": "Tract population (ACS 2022)"
+          },
+          {
+            "name": "tract_median_income",
+            "type": "number",
+            "description": "Median household income"
+          },
+          {
+            "name": "tract_pct_walk_commute",
+            "type": "number",
+            "description": "Percent walking to work"
+          },
+          {
+            "name": "tract_pct_bachelors_plus",
+            "type": "number",
+            "description": "Percent with bachelor's+"
+          },
+          {
+            "name": "tract_pop_density",
+            "type": "number",
+            "description": "Population density (people/sq km)"
+          },
+          {
+            "name": "tract_avg_ped_count_filled",
+            "type": "number",
+            "description": "Pedestrian count with missing filled"
+          },
+          {
+            "name": "dpi_ridership",
+            "type": "number",
+            "description": "Demand sub-index: MTA ridership"
+          },
+          {
+            "name": "dpi_pedestrian",
+            "type": "number",
+            "description": "Demand sub-index: pedestrian flow"
+          },
+          {
+            "name": "dpi_population",
+            "type": "number",
+            "description": "Demand sub-index: population"
+          },
+          {
+            "name": "demand_proxy_index",
+            "type": "number",
+            "description": "Composite Demand Proxy Index (0-1)"
+          },
+          {
+            "name": "supply_index",
+            "type": "number",
+            "description": "Supply concentration index"
+          },
+          {
+            "name": "supply_normalized",
+            "type": "number",
+            "description": "Normalized supply index (0-1)"
+          },
+          {
+            "name": "location_fitness_score",
+            "type": "number",
+            "description": "Location Fitness Score"
+          }
+        ]
+      }
+    },
+    {
+      "path": "manhattan_pedestrian_counts.csv",
+      "description": "NYC DOT Bi-Annual Pedestrian Counts at 36 Manhattan locations (2007-2025)",
+      "schema": {
+        "fields": [
+          {
+            "name": "the_geom",
+            "type": "string",
+            "description": "Point geometry (WKT)"
+          },
+          {
+            "name": "OBJECTID",
+            "type": "integer",
+            "description": "Unique object identifier"
+          },
+          {
+            "name": "Loc",
+            "type": "integer",
+            "description": "Location identifier"
+          },
+          {
+            "name": "Borough",
+            "type": "string",
+            "description": "Borough name (Manhattan)"
+          },
+          {
+            "name": "Street_Nam",
+            "type": "string",
+            "description": "Street name of count location"
+          },
+          {
+            "name": "From_Stree",
+            "type": "string",
+            "description": "Cross street (from)"
+          },
+          {
+            "name": "To_Street",
+            "type": "string",
+            "description": "Cross street (to)"
+          },
+          {
+            "name": "Iex",
+            "type": "string",
+            "description": "Index/intersection identifier"
+          }
+        ]
+      }
+    },
+    {
+      "path": "mta_hourly_manhattan_q4_2024.csv",
+      "description": "MTA hourly ridership data for Manhattan subway stations, Q4 2024 (Oct-Dec). Aggregated from raw turnstile records.",
+      "schema": {
+        "fields": [
+          {
+            "name": "station_complex_id",
+            "type": "string",
+            "description": "MTA station complex identifier"
+          },
+          {
+            "name": "hour",
+            "type": "integer",
+            "description": "Hour of day (0-23)"
+          },
+          {
+            "name": "total_ridership",
+            "type": "integer",
+            "description": "Total ridership for this station-hour combination"
+          },
+          {
+            "name": "n_records",
+            "type": "integer",
+            "description": "Number of source records aggregated"
+          }
+        ]
+      }
+    },
+    {
+      "path": "state_population_1996_2025.csv",
+      "description": "US state population estimates (50 states + DC, 1996-2025) from Census Bureau for normalizing store density.",
+      "schema": {
+        "fields": [
+          {
+            "name": "state",
+            "type": "string",
+            "description": "US state name (including DC)"
+          },
+          {
+            "name": "year",
+            "type": "integer",
+            "description": "Calendar year (1996-2025)"
+          },
+          {
+            "name": "population",
+            "type": "integer",
+            "description": "Estimated state population"
+          }
+        ]
+      }
+    }
+  ]
+}

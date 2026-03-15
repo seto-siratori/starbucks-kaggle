@@ -1,0 +1,39 @@
+{
+  "title": "Manhattan Café Wars: Starbucks & Subway",
+  "subtitle": "1,300+ cafés + 123 subway stations with daily ridership — open data",
+  "description": "## What's inside\n\nThree analysis-ready CSV files covering Manhattan's café landscape and transit infrastructure:\n\n1. **manhattan_starbucks_osm.csv** — 171 Starbucks locations from OpenStreetMap with addresses and amenity attributes\n2. **manhattan_cafes_osm.csv** — 1,335 cafés (Starbucks, Dunkin', branded chains, and independents) with brand classification\n3. **manhattan_mta_ridership_summary.csv** — 123 subway station complexes with average daily ridership (Q4 2024)\n\n## Use cases\n\n- Spatial competition analysis (Starbucks vs. competitors)\n- Transit-oriented location scoring\n- Walk-distance network analysis with OSMnx\n- Demand proxy modeling using subway ridership\n- Urban retail geography research\n\n## Data sources & licenses\n\n| File | Source | License |\n|---|---|---|\n| Starbucks & Cafés | OpenStreetMap via Overpass API | ODbL 1.0 |\n| MTA Ridership | data.ny.gov (MTA Subway Hourly Ridership) | OPEN NY Terms |\n\n**OpenStreetMap attribution**: © OpenStreetMap contributors. Data available under the Open Database License (ODbL) v1.0.\n\n**MTA data**: Provided by the Metropolitan Transportation Authority via New York State Open Data portal.\n\n## Coordinate Reference System\n\nAll coordinates are in **WGS84 (EPSG:4326)** — standard latitude/longitude.\n\n## Column descriptions\n\n### manhattan_starbucks_osm.csv (171 rows)\n\n| Column | Type | Description |\n|---|---|---|\n| osm_id | int | OpenStreetMap element ID |\n| osm_element | str | OSM element type (node/way) |\n| name | str | Store name |\n| brand | str | Brand name (Starbucks) |\n| addr_street | str | Street name (18% missing) |\n| addr_housenumber | str | House number (18% missing) |\n| addr_postcode | str | ZIP code (18% missing) |\n| addr_city | str | City name |\n| phone | str | Phone number (24% missing) |\n| opening_hours | str | Opening hours in OSM format (46% missing) |\n| wheelchair | str | Wheelchair accessibility |\n| outdoor_seating | str | Outdoor seating available |\n| indoor_seating | str | Indoor seating available |\n| drive_through | str | Drive-through available |\n| takeaway | str | Takeaway available |\n| lat | float | Latitude (WGS84) |\n| lon | float | Longitude (WGS84) |\n\n### manhattan_cafes_osm.csv (1,335 rows)\n\n| Column | Type | Description |\n|---|---|---|\n| osm_id | int | OpenStreetMap element ID |\n| osm_element | str | OSM element type |\n| name | str | Café name ('Unknown Café' if missing) |\n| brand | str | Brand name (NaN for independents) |\n| amenity | str | OSM amenity tag |\n| cuisine | str | Cuisine type tag |\n| addr_street | str | Street name |\n| addr_housenumber | str | House number |\n| lat | float | Latitude (WGS84) |\n| lon | float | Longitude (WGS84) |\n| brand_category | str | One of: starbucks, dunkin, branded, independent |\n\n### manhattan_mta_ridership_summary.csv (123 rows)\n\n| Column | Type | Description |\n|---|---|---|\n| station_complex_id | str | MTA station complex identifier |\n| station_name | str | Station name with subway lines |\n| lat | float | Latitude (WGS84) |\n| lon | float | Longitude (WGS84) |\n| avg_daily_ridership | int | Average daily ridership (all fare types combined) |\n| total_ridership_q4_2024 | int | Total ridership Oct-Dec 2024 |\n| data_period | str | Data collection period |\n| data_days | int | Number of days in the period (92) |\n\n## Missing data policy\n\n- **lat/lon**: Never missing (required fields)\n- **name**: Never missing (filled with 'Unknown Café' if absent in OSM)\n- **brand**: NaN for independent cafés (by design, not an error)\n- **Address fields**: NaN where OSM contributors haven't added the information\n- **Ridership**: 0 would indicate no data, but all 123 stations have ridership > 0\n\n## Updates\n\n- **v1.0** (2026-03-12): Initial release with Q4 2024 ridership data",
+  "id": "shiratoriseto/manhattan-cafe-wars",
+  "licenses": [
+    {
+      "name": "ODbL-1.0",
+      "nameNice": "Open Data Commons Open Database License (ODbL) v1.0"
+    }
+  ],
+  "keywords": [
+    "starbucks",
+    "manhattan",
+    "spatial-analysis",
+    "openstreetmap",
+    "subway-ridership",
+    "osmnx",
+    "geospatial",
+    "cafe",
+    "nyc",
+    "location-analysis",
+    "urban-analytics"
+  ],
+  "resources": [
+    {
+      "path": "manhattan_starbucks_osm.csv",
+      "description": "171 Starbucks locations in Manhattan from OpenStreetMap"
+    },
+    {
+      "path": "manhattan_cafes_osm.csv",
+      "description": "1,335 cafés in Manhattan (Starbucks + Dunkin' + branded + independent) from OpenStreetMap"
+    },
+    {
+      "path": "manhattan_mta_ridership_summary.csv",
+      "description": "123 MTA subway station complexes with average daily ridership (Q4 2024)"
+    }
+  ]
+}

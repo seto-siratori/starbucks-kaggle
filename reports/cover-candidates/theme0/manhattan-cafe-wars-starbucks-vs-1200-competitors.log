@@ -1,0 +1,62 @@
+[{"stream_name":"stderr","time":7.989158364,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":7.989242114,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":7.989246934,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":7.989250024,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":8.652551461,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":8.652609271,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":8.652614001,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":8.652617591,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":12.634502151,"data":"\u001b[?25l   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m0.0/104.4 kB\u001b[0m \u001b[31m?\u001b[0m eta \u001b[36m-:--:--\u001b[0m\r\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m104.4/104.4 kB\u001b[0m \u001b[31m4.3 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\r\n"}
+,{"stream_name":"stdout","time":19.907897243,"data":"\u001b[?25hosmnx 2.1.0 installed successfully\n"}
+,{"stream_name":"stdout","time":21.605112384999998,"data":"Running on Kaggle — data from /kaggle/input/datasets/shiratoriseto/manhattan-cafe-wars\n"}
+,{"stream_name":"stdout","time":21.605152415,"data":"\n"}
+,{"stream_name":"stdout","time":21.605157815,"data":"Starbucks : 171 stores\n"}
+,{"stream_name":"stdout","time":21.605162895,"data":"All cafés : 1,335 (incl. Starbucks, Dunkin', independents)\n"}
+,{"stream_name":"stdout","time":21.605168155,"data":"Subway stn: 123 station complexes\n"}
+,{"stream_name":"stdout","time":21.605172475,"data":"CRS       : EPSG:4326 (WGS84)\n"}
+,{"stream_name":"stdout","time":21.634031186,"data":"brand_category\n"}
+,{"stream_name":"stdout","time":21.634088216,"data":"independent    872\n"}
+,{"stream_name":"stdout","time":21.634092916,"data":"branded        179\n"}
+,{"stream_name":"stdout","time":21.634097406,"data":"starbucks      169\n"}
+,{"stream_name":"stdout","time":21.634101706,"data":"dunkin         115\n"}
+,{"stream_name":"stdout","time":21.634106696,"data":"\n"}
+,{"stream_name":"stdout","time":21.634111686,"data":"Top 10 brands:\n"}
+,{"stream_name":"stdout","time":21.634116666,"data":"brand\n"}
+,{"stream_name":"stdout","time":21.634130716,"data":"Starbucks                     169\n"}
+,{"stream_name":"stdout","time":21.634136356,"data":"Dunkin'                       115\n"}
+,{"stream_name":"stdout","time":21.634140976,"data":"Le Pain Quotidien              24\n"}
+,{"stream_name":"stdout","time":21.634145436,"data":"Joe \u0026 The Juice                15\n"}
+,{"stream_name":"stdout","time":21.634150306,"data":"Blue Bottle Coffee             13\n"}
+,{"stream_name":"stdout","time":21.634154696,"data":"Matto Espresso                 12\n"}
+,{"stream_name":"stdout","time":21.634158816,"data":"Bluestone Lane                 10\n"}
+,{"stream_name":"stdout","time":21.634163096,"data":"Joe Coffee Company              8\n"}
+,{"stream_name":"stdout","time":21.634167786,"data":"La Colombe Coffee Roasters      8\n"}
+,{"stream_name":"stdout","time":21.634193836,"data":"Gong Cha                        8\n"}
+,{"stream_name":"stdout","time":26.702930793,"data":"Distance summary (straight-line, meters):\n"}
+,{"stream_name":"stdout","time":26.702974633,"data":"                                 Median     Mean      Min      Max\n"}
+,{"stream_name":"stdout","time":26.702979182,"data":"Starbucks → nearest Starbucks       208      279       53     1801\n"}
+,{"stream_name":"stdout","time":26.702983422,"data":"Starbucks → nearest competitor       57       78        4      758\n"}
+,{"stream_name":"stdout","time":26.702986673,"data":"Starbucks → nearest subway stn      195      214       19      745\n"}
+,{"stream_name":"stdout","time":27.065561781,"data":"Store A   : Starbucks\n"}
+,{"stream_name":"stdout","time":27.065605881,"data":"  at      : (40.75555, -73.98406)\n"}
+,{"stream_name":"stdout","time":27.065611712,"data":"Store B   : Starbucks\n"}
+,{"stream_name":"stdout","time":27.065616952,"data":"  at      : (40.75666, -73.98587)\n"}
+,{"stream_name":"stdout","time":27.065621712,"data":"Straight  : 197m\n"}
+,{"stream_name":"stdout","time":94.109500541,"data":"Straight-line distance : 197m\n"}
+,{"stream_name":"stdout","time":94.109544061,"data":"Walk distance          : 232m\n"}
+,{"stream_name":"stdout","time":94.109550451,"data":"Ratio (walk/straight)  : 1.18×\n"}
+,{"stream_name":"stdout","time":94.109556871,"data":"\n"}
+,{"stream_name":"stdout","time":94.109561681,"data":"The walk is 18% longer than the crow flies.\n"}
+,{"stream_name":"stderr","time":98.450313758,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":98.450371258,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":98.629275899,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":98.629318279,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":99.218517588,"data":"/usr/local/lib/python3.12/dist-packages/traitlets/traitlets.py:2915: FutureWarning: --Exporter.preprocessors=[\"remove_papermill_header.RemovePapermillHeader\"] for containers is deprecated in traitlets 5.0. You can pass `--Exporter.preprocessors item` ... multiple times to add items to a list.\n"}
+,{"stream_name":"stderr","time":99.218580988,"data":"  warn(\n"}
+,{"stream_name":"stderr","time":99.261429795,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":99.600960494,"data":"[NbConvertApp] Writing 1798448 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":102.413477844,"data":"/usr/local/lib/python3.12/dist-packages/traitlets/traitlets.py:2915: FutureWarning: --Exporter.preprocessors=[\"nbconvert.preprocessors.ExtractOutputPreprocessor\"] for containers is deprecated in traitlets 5.0. You can pass `--Exporter.preprocessors item` ... multiple times to add items to a list.\n"}
+,{"stream_name":"stderr","time":102.413518924,"data":"  warn(\n"}
+,{"stream_name":"stderr","time":102.436240321,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":103.423017751,"data":"[NbConvertApp] Writing 1799080 bytes to __results__.html\n"}
+]

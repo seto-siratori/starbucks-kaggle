@@ -1,0 +1,112 @@
+[{"stream_name":"stderr","time":9.374851944,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":9.374967693,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":9.374975682,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":9.374979183,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":10.241163339,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":10.241204184,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":10.241210829,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":10.241215848,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":15.137301411,"data":"\u001b[?25l   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m0.0/104.4 kB\u001b[0m \u001b[31m?\u001b[0m eta \u001b[36m-:--:--\u001b[0m\r\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m104.4/104.4 kB\u001b[0m \u001b[31m3.7 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\r\n"}
+,{"stream_name":"stdout","time":22.563395555,"data":"\u001b[?25hData directory: /kaggle/input/datasets/shiratoriseto/manhattan-cafe-wars\n"}
+,{"stream_name":"stdout","time":23.231841704,"data":"Starbucks stores : 171 (63 columns)\n"}
+,{"stream_name":"stdout","time":23.231885787,"data":"All cafés        : 1,335\n"}
+,{"stream_name":"stdout","time":23.23189378,"data":"Census Tracts    : 309\n"}
+,{"stream_name":"stdout","time":23.231899832,"data":"Pedestrian count locations (Manhattan): 36\n"}
+,{"stream_name":"stdout","time":23.231905941,"data":"  Count range: 852 – 13604\n"}
+,{"stream_name":"stdout","time":23.39111016,"data":"Tracts WITH Starbucks:  104 (34%)\n"}
+,{"stream_name":"stdout","time":23.391151802,"data":"Tracts WITHOUT:         205 (66%)\n"}
+,{"stream_name":"stdout","time":23.391159244,"data":"Total stores in 104 tracts: 171\n"}
+,{"stream_name":"stdout","time":24.2355238,"data":"Store distribution by LISA spatial cluster (from Notebook A):\n"}
+,{"stream_name":"stdout","time":24.238606803,"data":"\n"}
+,{"stream_name":"stdout","time":24.238666549,"data":"Key insight: 205 tracts (66%) have zero Starbucks. But do they have zero *demand*? → Section 2–3 will answer this.\n"}
+,{"stream_name":"stdout","time":24.386002085,"data":"Demand Proxy Index (DPI) — summary statistics:\n"}
+,{"stream_name":"stdout","time":24.38604374,"data":"count    309.000000\n"}
+,{"stream_name":"stdout","time":24.386050801,"data":"mean       0.062724\n"}
+,{"stream_name":"stdout","time":24.386056805,"data":"std        0.096833\n"}
+,{"stream_name":"stdout","time":24.38606276,"data":"min        0.000000\n"}
+,{"stream_name":"stdout","time":24.386068893,"data":"25%        0.000000\n"}
+,{"stream_name":"stdout","time":24.386075331,"data":"50%        0.009445\n"}
+,{"stream_name":"stdout","time":24.386080748,"data":"75%        0.105808\n"}
+,{"stream_name":"stdout","time":24.386086736,"data":"max        0.675232\n"}
+,{"stream_name":"stdout","time":24.386092683,"data":"\n"}
+,{"stream_name":"stdout","time":24.38609852,"data":"Tracts with DPI \u003e 0: 160 / 309\n"}
+,{"stream_name":"stdout","time":24.38612833,"data":"Tracts with MTA data: 98\n"}
+,{"stream_name":"stdout","time":24.38613344,"data":"Tracts with pedestrian data: 29\n"}
+,{"stream_name":"stdout","time":24.386138074,"data":"Tracts with population data: 104\n"}
+,{"stream_name":"stdout","time":29.353508068,"data":"\n"}
+,{"stream_name":"stdout","time":29.353557486,"data":"Max pairwise |r| = 0.38\n"}
+,{"stream_name":"stdout","time":29.353565803,"data":"✓ No multicollinearity detected (all |r| \u003c 0.8). Safe to combine all three variables.\n"}
+,{"stream_name":"stdout","time":29.535073626,"data":"LFS computation complete.\n"}
+,{"stream_name":"stdout","time":29.535112836,"data":"  Tracts: 309\n"}
+,{"stream_name":"stdout","time":29.535119982,"data":"  DPI range:    0.0000 – 0.6752\n"}
+,{"stream_name":"stdout","time":29.535138919,"data":"  Supply range: 0.0 – 16.0\n"}
+,{"stream_name":"stdout","time":29.535145296,"data":"  LFS range:    0.0000 – 0.1501\n"}
+,{"stream_name":"stdout","time":29.535151683,"data":"  LFS median:   0.0055\n"}
+,{"stream_name":"stdout","time":29.535156871,"data":"  LFS mean:     0.0155\n"}
+,{"stream_name":"stdout","time":29.6655748,"data":"Tracts with DPI = 0 (no demand signal): 149\n"}
+,{"stream_name":"stdout","time":29.66561135,"data":"Tracts with Supply = 0 (no cafés at all): 69\n"}
+,{"stream_name":"stdout","time":29.665616816,"data":"Tracts with LFS = 0: 149\n"}
+,{"stream_name":"stdout","time":29.771138572,"data":"================================================================================\n"}
+,{"stream_name":"stdout","time":29.77117545,"data":"TOP 10 UNDER-SERVED TRACTS — Expansion Candidates\n"}
+,{"stream_name":"stdout","time":29.771181232,"data":"  (highest LFS among tracts with demand \u003e 0)\n"}
+,{"stream_name":"stdout","time":29.771186499,"data":"================================================================================\n"}
+,{"stream_name":"stdout","time":29.787448321,"data":"\n"}
+,{"stream_name":"stdout","time":29.787491663,"data":"================================================================================\n"}
+,{"stream_name":"stdout","time":29.787499666,"data":"TOP 10 OVER-SERVED TRACTS — Cannibalization Risk\n"}
+,{"stream_name":"stdout","time":29.787507053,"data":"  (lowest LFS among tracts with ≥ 1 Starbucks)\n"}
+,{"stream_name":"stdout","time":29.78751354,"data":"================================================================================\n"}
+,{"stream_name":"stdout","time":31.511459,"data":"Minimum pairwise Spearman ρ = 0.890\n"}
+,{"stream_name":"stdout","time":31.51150484,"data":"✓ Rankings are ROBUST to demand weight changes (all ρ ≥ 0.8).\n"}
+,{"stream_name":"stdout","time":31.705084489,"data":"Unique tracts appearing in ANY top-10: 19\n"}
+,{"stream_name":"stdout","time":31.705143723,"data":"★ Stable (in ALL 3 scenarios):             1\n"}
+,{"stream_name":"stdout","time":31.705152252,"data":"  Partial (in 2 scenarios):                 9\n"}
+,{"stream_name":"stdout","time":31.705159374,"data":"  Unstable (in 1 scenario only):            9\n"}
+,{"stream_name":"stdout","time":31.705165837,"data":"\n"}
+,{"stream_name":"stdout","time":31.875932012,"data":"Minimum pairwise Spearman ρ = 0.938\n"}
+,{"stream_name":"stdout","time":31.875975591,"data":"✓ Rankings are ROBUST to competitor weight changes (all ρ ≥ 0.8).\n"}
+,{"stream_name":"stdout","time":32.030879042,"data":"Competitor weight sensitivity — Top 10 under-served:\n"}
+,{"stream_name":"stdout","time":32.030950074,"data":"  ★ Stable (in all 3 settings):  4\n"}
+,{"stream_name":"stdout","time":32.030958942,"data":"  Partial (in 2 settings):        5\n"}
+,{"stream_name":"stdout","time":32.030981754,"data":"  Unstable (in 1 setting only):   8\n"}
+,{"stream_name":"stdout","time":32.030986772,"data":"\n"}
+,{"stream_name":"stdout","time":32.030991582,"data":"======================================================================\n"}
+,{"stream_name":"stdout","time":32.030996762,"data":"ROBUST CANDIDATES — Stable across ALL 6 tests\n"}
+,{"stream_name":"stdout","time":32.031001805,"data":"  (3 demand scenarios × 2 + 3 competitor settings)\n"}
+,{"stream_name":"stdout","time":32.031005148,"data":"======================================================================\n"}
+,{"stream_name":"stdout","time":32.033669865,"data":"\n"}
+,{"stream_name":"stdout","time":32.03370199,"data":"Overall robustness assessment:\n"}
+,{"stream_name":"stdout","time":32.033707466,"data":"  Demand weight sensitivity:     min ρ = 0.890 ✓\n"}
+,{"stream_name":"stdout","time":32.033713202,"data":"  Competitor weight sensitivity:  min ρ = 0.938 ✓\n"}
+,{"stream_name":"stdout","time":32.033718359,"data":"  Stable across demand scenarios: 1/10 tracts\n"}
+,{"stream_name":"stdout","time":32.033723807,"data":"  Stable across comp. settings:   4/10 tracts\n"}
+,{"stream_name":"stdout","time":32.033728596,"data":"  Stable across BOTH:             1 tracts\n"}
+,{"stream_name":"stdout","time":32.239882531,"data":"⚠ 2017 Kaggle directory.csv not found. Skipping backtest.\n"}
+,{"stream_name":"stdout","time":32.239938205,"data":"  To run this section, download from:\n"}
+,{"stream_name":"stdout","time":32.239943918,"data":"  https://www.kaggle.com/datasets/starbucks/store-locations\n"}
+,{"stream_name":"stdout","time":32.353793831,"data":"Backtest skipped — 2017 data not available.\n"}
+,{"stream_name":"stdout","time":32.459822469,"data":"Backtest visualization skipped.\n"}
+,{"stream_name":"stdout","time":35.714123558,"data":"Demo stores:\n"}
+,{"stream_name":"stdout","time":35.714172514,"data":"  Starbucks (40.75724, -73.98912)\n"}
+,{"stream_name":"stdout","time":35.714179154,"data":"  Starbucks (40.78103, -73.98101)\n"}
+,{"stream_name":"stdout","time":35.714184283,"data":"\n"}
+,{"stream_name":"stdout","time":35.714189035,"data":"Downloading Manhattan walking network (this may take a moment)...\n"}
+,{"stream_name":"stdout","time":57.31613118,"data":"  Nodes: 11,822, Edges: 37,850\n"}
+,{"stream_name":"stdout","time":57.673587732,"data":"\n"}
+,{"stream_name":"stdout","time":57.673630305,"data":"Isochrone demo complete.\n"}
+,{"stream_name":"stdout","time":57.673636505,"data":"  Walk distance: 400m (5 min at 80 m/min)\n"}
+,{"stream_name":"stdout","time":57.673640497,"data":"  Stores shown: 2\n"}
+,{"stream_name":"stdout","time":57.673669319,"data":"  To run for all 171 stores, use compute_isochrone() in a loop\n"}
+,{"stream_name":"stdout","time":57.673678412,"data":"  with a city-wide graph: G = ox.graph_from_place('Manhattan, NY', network_type='walk')\n"}
+,{"stream_name":"stderr","time":62.68509326,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":62.685140902,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":62.904768722,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":62.904823014,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":63.7053943,"data":"/usr/local/lib/python3.12/dist-packages/traitlets/traitlets.py:2915: FutureWarning: --Exporter.preprocessors=[\"remove_papermill_header.RemovePapermillHeader\"] for containers is deprecated in traitlets 5.0. You can pass `--Exporter.preprocessors item` ... multiple times to add items to a list.\n"}
+,{"stream_name":"stderr","time":63.705457487,"data":"  warn(\n"}
+,{"stream_name":"stderr","time":63.761754411,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":64.312780801,"data":"[NbConvertApp] Writing 3154747 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":67.687352028,"data":"/usr/local/lib/python3.12/dist-packages/traitlets/traitlets.py:2915: FutureWarning: --Exporter.preprocessors=[\"nbconvert.preprocessors.ExtractOutputPreprocessor\"] for containers is deprecated in traitlets 5.0. You can pass `--Exporter.preprocessors item` ... multiple times to add items to a list.\n"}
+,{"stream_name":"stderr","time":67.68739982,"data":"  warn(\n"}
+,{"stream_name":"stderr","time":67.71659808,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":69.239959061,"data":"[NbConvertApp] Writing 3440113 bytes to __results__.html\n"}
+]

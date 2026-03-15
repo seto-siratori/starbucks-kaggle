@@ -1,0 +1,17 @@
+{
+  "id": "shiratoriseto/starbucks-location-fitness",
+  "title": "Starbucks Location Fitness",
+  "code_file": "notebook_b_location_fitness.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "shiratoriseto/manhattan-cafe-wars",
+    "starbucks/store-locations"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "keywords": ["regression", "feature-engineering", "eda"]
+}

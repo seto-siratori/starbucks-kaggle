@@ -1,0 +1,14 @@
+{
+  "id": "shiratoriseto/manhattan-cafe-wars-starbucks-vs-1200-competitors",
+  "title": "Manhattan Cafe Wars: Starbucks vs 1200 Competitors",
+  "code_file": "00_manhattan_cafe_wars.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "dataset_sources": ["shiratoriseto/manhattan-cafe-wars"],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "keywords": ["eda", "data-visualization", "clustering"]
+}

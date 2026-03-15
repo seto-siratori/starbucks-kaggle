@@ -1,0 +1,14 @@
+{
+  "id": "shiratoriseto/starbucks-10-k-lda-topic-explorer-pyldavis",
+  "title": "Starbucks 10-K LDA Topic Explorer: pyLDAvis",
+  "code_file": "notebook_f_lda_explorer.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "shiratoriseto/starbucks-30year-nlp-corpus"
+  ],
+  "keywords": ["nlp", "data-visualization", "text-mining"]
+}

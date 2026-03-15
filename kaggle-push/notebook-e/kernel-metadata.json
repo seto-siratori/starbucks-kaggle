@@ -1,0 +1,14 @@
+{
+  "id": "shiratoriseto/starbucks-walk-distance-analysis-osmnx",
+  "title": "Starbucks Walk-Distance Analysis: OSMnx",
+  "code_file": "notebook_e_walk_distance.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "shiratoriseto/manhattan-cafe-wars"
+  ],
+  "keywords": ["geospatial-analysis", "data-visualization", "clustering"]
+}

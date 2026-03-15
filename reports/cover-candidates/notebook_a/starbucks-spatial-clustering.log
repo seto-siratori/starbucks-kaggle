@@ -1,0 +1,87 @@
+[{"stream_name":"stderr","time":7.781745635,"data":"/usr/local/lib/python3.12/dist-packages/nbformat/__init__.py:96: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.\n"}
+,{"stream_name":"stderr","time":7.781802193,"data":"  validate(nb)\n"}
+,{"stream_name":"stderr","time":9.067482115,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":9.067519065,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":9.067525005,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":9.067528819,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":9.930907514,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":9.930946634,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":9.930951799,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":9.930955164,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":20.868669773,"data":"Data directory: /kaggle/input/datasets/shiratoriseto/manhattan-cafe-wars\n"}
+,{"stream_name":"stdout","time":20.95569984,"data":"Starbucks stores : 171\n"}
+,{"stream_name":"stdout","time":20.95574078,"data":"All cafés        : 1,335\n"}
+,{"stream_name":"stdout","time":20.955748203,"data":"Enriched columns : 63\n"}
+,{"stream_name":"stdout","time":20.955754445,"data":"\n"}
+,{"stream_name":"stdout","time":20.95575996,"data":"Column groups:\n"}
+,{"stream_name":"stdout","time":20.955765917,"data":"  OSM attributes  : osm_id, name, addr_*, lat, lon\n"}
+,{"stream_name":"stdout","time":20.955771912,"data":"  Building (PLUTO): pluto_landuse, pluto_numfloors, pluto_retailarea, ...\n"}
+,{"stream_name":"stdout","time":20.955777725,"data":"  Transit (MTA)   : mta_station_name, mta_dist_m, mta_avg_daily_ridership\n"}
+,{"stream_name":"stdout","time":20.955783071,"data":"  Competition     : n_starbucks_500m, n_dunkin_500m, n_other_cafe_500m, ...\n"}
+,{"stream_name":"stdout","time":20.955788982,"data":"  Demographics    : tract_population, tract_median_income, ...\n"}
+,{"stream_name":"stdout","time":20.955794762,"data":"  Demand/Supply   : demand_proxy_index, supply_index, location_fitness_score\n"}
+,{"stream_name":"stdout","time":20.955800832,"data":"  Station cluster : station_cluster_name\n"}
+,{"stream_name":"stdout","time":25.242183098,"data":"Correlation with competitor density:\n"}
+,{"stream_name":"stdout","time":25.242225488,"data":"  Subway ridership : r = 0.582  \u003c- STRONG\n"}
+,{"stream_name":"stdout","time":25.242232618,"data":"  Household income : r = 0.032  \u003c- essentially ZERO\n"}
+,{"stream_name":"stdout","time":32.929297522,"data":"Loaded tract polygons: 309 tracts\n"}
+,{"stream_name":"stdout","time":32.92935694,"data":"Tracts with \u003e= 1 Starbucks: 104 / 309\n"}
+,{"stream_name":"stdout","time":32.929365008,"data":"Max stores in one tract : 6\n"}
+,{"stream_name":"stdout","time":33.281311734,"data":"=======================================================\n"}
+,{"stream_name":"stdout","time":33.281356149,"data":"GLOBAL MORAN'S I  —  Starbucks Count by Census Tract\n"}
+,{"stream_name":"stdout","time":33.281387599,"data":"=======================================================\n"}
+,{"stream_name":"stdout","time":33.281393126,"data":"  Moran's I  : 0.3591\n"}
+,{"stream_name":"stdout","time":33.281397976,"data":"  Expected   : -0.0032  (under spatial randomness)\n"}
+,{"stream_name":"stdout","time":33.281401521,"data":"  z-score    : 11.10\n"}
+,{"stream_name":"stdout","time":33.281404454,"data":"  p-value    : 0.000100\n"}
+,{"stream_name":"stdout","time":33.281407462,"data":"\n"}
+,{"stream_name":"stdout","time":33.281410689,"data":"  Result: SIGNIFICANT positive spatial autocorrelation.\n"}
+,{"stream_name":"stdout","time":33.281414741,"data":"  Starbucks stores are spatially CLUSTERED, not randomly placed.\n"}
+,{"stream_name":"stdout","time":61.171567202,"data":"LISA Cluster Summary:\n"}
+,{"stream_name":"stdout","time":61.171614822,"data":"lisa_cluster\n"}
+,{"stream_name":"stdout","time":61.171622415,"data":"Not Significant    259\n"}
+,{"stream_name":"stdout","time":61.171628591,"data":"High-High           30\n"}
+,{"stream_name":"stdout","time":61.171634339,"data":"Low-High            10\n"}
+,{"stream_name":"stdout","time":61.17164041,"data":"Low-Low              5\n"}
+,{"stream_name":"stdout","time":61.171646233,"data":"High-Low             5\n"}
+,{"stream_name":"stdout","time":62.161326693,"data":"HIGH-HIGH (Hotspot) tracts by area:\n"}
+,{"stream_name":"stdout","time":62.161369785,"data":"                        tracts  stores\n"}
+,{"stream_name":"stdout","time":62.161377033,"data":"area                                  \n"}
+,{"stream_name":"stdout","time":62.161382985,"data":"Chelsea / Murray Hill       23      57\n"}
+,{"stream_name":"stdout","time":62.161388556,"data":"Lower Manhattan / FiDi       6      13\n"}
+,{"stream_name":"stdout","time":62.16139493,"data":"Midtown                      1       5\n"}
+,{"stream_name":"stdout","time":62.161400664,"data":"\n"}
+,{"stream_name":"stdout","time":62.161406081,"data":"LOW-HIGH (Gap in hot area) — potential opportunity zones:\n"}
+,{"stream_name":"stdout","time":62.161413483,"data":"                          tracts  stores\n"}
+,{"stream_name":"stdout","time":62.161418656,"data":"area                                    \n"}
+,{"stream_name":"stdout","time":62.161424271,"data":"Chelsea / Murray Hill          6       0\n"}
+,{"stream_name":"stdout","time":62.16143017,"data":"Greenwich / East Village       2       0\n"}
+,{"stream_name":"stdout","time":62.161436018,"data":"Lower Manhattan / FiDi         2       0\n"}
+,{"stream_name":"stdout","time":62.271934769,"data":"Nearest Same-Brand Neighbor:\n"}
+,{"stream_name":"stdout","time":62.271976092,"data":"  Starbucks (n=171): median = 208m, mean = 279m\n"}
+,{"stream_name":"stdout","time":62.271981933,"data":"  Dunkin'   (n=115): median = 294m, mean = 329m\n"}
+,{"stream_name":"stdout","time":62.271985986,"data":"\n"}
+,{"stream_name":"stdout","time":62.271990659,"data":"  Ratio: Dunkin' / Starbucks = 1.41x\n"}
+,{"stream_name":"stdout","time":62.271994535,"data":"  -\u003e Starbucks packs its stores 1.4x tighter than Dunkin' does.\n"}
+,{"stream_name":"stdout","time":62.27199918,"data":"\n"}
+,{"stream_name":"stdout","time":62.272003607,"data":"  Starbucks within 200m of another Starbucks: 82 (48%)\n"}
+,{"stream_name":"stdout","time":63.530292216,"data":"L(d) at key distances (positive = more clustered than random):\n"}
+,{"stream_name":"stdout","time":63.530330599,"data":"  Distance   Starbucks      Dunkin   CSR upper\n"}
+,{"stream_name":"stdout","time":63.530337606,"data":"      200m         351         211          53\n"}
+,{"stream_name":"stdout","time":63.530362892,"data":"      500m         999         778          46\n"}
+,{"stream_name":"stdout","time":63.530368418,"data":"     1000m        1693        1247          37\n"}
+,{"stream_name":"stdout","time":63.635817678,"data":"Template function defined. See docstring for usage.\n"}
+,{"stream_name":"stdout","time":63.635853519,"data":"Replace stores_df, competitors_df, and polygon_gdf with your own data.\n"}
+,{"stream_name":"stderr","time":68.058645088,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":68.058689221,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":68.276208593,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":68.276239658,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":69.002314403,"data":"/usr/local/lib/python3.12/dist-packages/traitlets/traitlets.py:2915: FutureWarning: --Exporter.preprocessors=[\"remove_papermill_header.RemovePapermillHeader\"] for containers is deprecated in traitlets 5.0. You can pass `--Exporter.preprocessors item` ... multiple times to add items to a list.\n"}
+,{"stream_name":"stderr","time":69.002359702,"data":"  warn(\n"}
+,{"stream_name":"stderr","time":69.054509511,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":69.508609835,"data":"[NbConvertApp] Writing 648902 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":72.795164116,"data":"/usr/local/lib/python3.12/dist-packages/traitlets/traitlets.py:2915: FutureWarning: --Exporter.preprocessors=[\"nbconvert.preprocessors.ExtractOutputPreprocessor\"] for containers is deprecated in traitlets 5.0. You can pass `--Exporter.preprocessors item` ... multiple times to add items to a list.\n"}
+,{"stream_name":"stderr","time":72.795207859,"data":"  warn(\n"}
+,{"stream_name":"stderr","time":72.824333402,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":74.08934521,"data":"[NbConvertApp] Writing 983659 bytes to __results__.html\n"}
+]

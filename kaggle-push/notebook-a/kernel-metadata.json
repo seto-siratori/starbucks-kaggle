@@ -1,0 +1,14 @@
+{
+  "id": "shiratoriseto/starbucks-spatial-clustering",
+  "title": "Starbucks Spatial Clustering",
+  "code_file": "notebook_a_spatial_clustering.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "dataset_sources": ["shiratoriseto/manhattan-cafe-wars"],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "keywords": ["clustering", "eda", "data-visualization"]
+}

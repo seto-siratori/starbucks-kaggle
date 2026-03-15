@@ -1,0 +1,41 @@
+# Data files (too large for git, available on Kaggle)
+data/raw/
+data/interim/
+data/processed/
+data/external/
+dataset-upload/**/*.csv
+dataset-upload/**/*.parquet
+
+# Binary/large files
+*.csv
+*.parquet
+*.pkl
+*.pdf
+
+# Keep metadata JSON files
+!dataset-upload/**/dataset-metadata.json
+!kaggle-push/**/kernel-metadata.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Cache
+cache/
+
+# Environment
+.env
+
+# OS
+.DS_Store
+
+# Virtual environment
+.venv/
+venv/
+
+# Claude
+.claude/

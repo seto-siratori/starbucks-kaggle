@@ -1,0 +1,725 @@
+{
+  "title": "Starbucks 30-Year 10-K NLP Corpus",
+  "subtitle": "Keyword frequencies, LDA topics & store counts from SEC EDGAR (FY1996-2025)",
+  "description": "## What's inside\n\nSeven analysis-ready CSV files derived from 30 years of Starbucks 10-K annual reports (FY1996–FY2025), covering store expansion data, keyword frequency analysis, LDA topic modeling results, and document-level text statistics.\n\n### Files\n\n1. **store_counts_timeseries.csv** (30 rows × 16 columns) — Store counts by segment (Company-operated/Licensed, US/International), percentage breakdowns, and CEO labels for each fiscal year.\n2. **item1_keyword_timeseries.csv** (30 rows × 70 columns) — Raw counts and relative frequency (per 10K words) for 34 strategic keywords extracted from Item 1 (Business) section. Keywords include: coffee, experience, digital, mobile, china, partner, employee, sustainability, rewards, and more.\n3. **item1_lda_topic_proportions.csv** (30 rows × 8 columns) — Year-level topic proportions from a 7-topic LDA model trained on 847 text chunks (~150 words each). Topics: Store Operations, Supply Chain & Commodity, Leadership & Governance, Digital & Loyalty, International & IP, People/Culture/ESG, Product & Competition.\n4. **item1_basic_stats.csv** (30 rows × 6 columns) — Document-level statistics: character count, sentence count, word count, unique words, and lexical diversity (type-token ratio).\n\n## Preprocessing pipeline\n\nThese CSVs were generated from the original 10-K filings through the following steps:\n1. Download 30 annual 10-K filings from [SEC EDGAR](https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000829224) (CIK: 0000829224)\n2. Extract **Item 1 (Business)** section from each filing\n3. Strip HTML/XBRL tags, normalize whitespace\n4. Tokenize → compute keyword frequencies (raw + per 10K words)\n5. For LDA: chunk each document into ~150-word segments → 847 chunks → train 7-topic LDA model → aggregate topic proportions by year\n\nThe raw 10-K texts are not included (file size), but are freely available from SEC EDGAR as public domain documents.\n\n## Use cases\n\n- Corporate language evolution analysis\n- NLP × financial metrics correlation studies\n- LDA topic modeling on SEC filings\n- Strategic keyword tracking across time\n- Reusable template for any public company's annual reports\n- Business strategy case studies\n\n## Data sources & licenses\n\n| Source | License |\n|---|---|\n| SEC EDGAR 10-K filings | Public domain (US government) |\n| Store counts | Extracted from 10-K Item 1 text (public domain) |\n\n## Related notebooks\n\n| Notebook | Theme | Link |\n|----------|-------|------|\n| Manhattan Cafe Wars | Theme 0: EDA & competitor mapping | [Open](https://www.kaggle.com/code/shiratoriseto/manhattan-cafe-wars-starbucks-vs-1200-competitors) |\n| Starbucks 10-K NLP | Theme 1: keyword trends, LDA topics, NLP × store count | [Open](https://www.kaggle.com/code/shiratoriseto/starbucks-10-k-nlp-topic-keyword-analysis) |\n| Starbucks Spatial Clustering | Theme 2A: Moran's I, LISA, Ripley's K | [Open](https://www.kaggle.com/code/shiratoriseto/starbucks-spatial-clustering) |\n| Starbucks Location Fitness | Theme 2B: demand-supply scoring & backtest | [Open](https://www.kaggle.com/code/shiratoriseto/starbucks-location-fitness) |\n| Starbucks Data Pipeline | Pipeline: EDGAR & OSM to CSV, data quality report | [Open](https://www.kaggle.com/code/shiratoriseto/starbucks-data-pipeline-edgar-osm-to-csv) |\n\n**Related dataset:** [Manhattan Café Wars: Starbucks & Subway](https://www.kaggle.com/datasets/shiratoriseto/manhattan-cafe-wars) — spatial data for Theme 0, 2A, 2B\n\n## Column descriptions\n\n### store_counts_timeseries.csv\n\n| Column | Type | Description |\n|---|---|---|\n| fiscal_year | int | Fiscal year (1996–2025) |\n| co_us | int | Company-operated stores in the US |\n| co_international | int | Company-operated stores outside the US |\n| lic_us | int | Licensed stores in the US |\n| lic_international | int | Licensed stores outside the US |\n| total_worldwide | int | Total store count worldwide |\n| source_note | str | Data extraction note |\n| co_total | int | Total company-operated stores |\n| lic_total | int | Total licensed stores |\n| us_total | int | Total US stores |\n| intl_total | int | Total international stores |\n| pct_licensed | float | Percentage of stores that are licensed |\n| pct_international | float | Percentage of stores outside the US |\n| yoy_growth | float | Year-over-year growth rate (%) |\n| yoy_change | int | Year-over-year change in store count |\n| ceo | str | CEO name for the fiscal year |\n\n### item1_keyword_timeseries.csv\n\nEach keyword has two columns: `{keyword}` (raw count) and `{keyword}_per10k` (frequency per 10,000 words).\n\n| Column | Description |\n|---|---|\n| fiscal_year | Fiscal year (1996–2025) |\n| total_words | Total word count of the Item 1 section |\n| digital / digital_per10k | \"digital\" occurrences |\n| mobile / mobile_per10k | \"mobile\" occurrences |\n| experience / experience_per10k | \"experience\" occurrences |\n| china / china_per10k | \"china\" occurrences |\n| partner / partner_per10k | \"partner\" occurrences |\n| coffee / coffee_per10k | \"coffee\" occurrences |\n| employee / employee_per10k | \"employee\" occurrences |\n| employees / employees_per10k | \"employees\" occurrences |\n| ... | 24 additional keywords (see CSV header for full list) |\n\n### item1_lda_topic_proportions.csv\n\n| Column | Label | Top Words |\n|---|---|---|\n| fiscal_year | — | Fiscal year (1996–2025) |\n| topic_0 | Store Operations | store, company, operated, retail, location |\n| topic_1 | Supply Chain & Commodity | coffee, roasting, green, bean, supply |\n| topic_2 | Leadership & Governance | board, director, officer, executive, committee |\n| topic_3 | Digital & Loyalty | digital, mobile, rewards, app, loyalty |\n| topic_4 | International & IP | international, license, trademark, agreement, joint |\n| topic_5 | People, Culture & ESG | partner, community, inclusion, diversity, training |\n| topic_6 | Product & Competition | beverage, food, tea, product, brand |\n\n### item1_basic_stats.csv\n\n| Column | Type | Description |\n|---|---|---|\n| fiscal_year | int | Fiscal year (1996–2025) |\n| chars | int | Total character count |\n| sentences | int | Sentence count |\n| words | int | Word count |\n| unique_words | int | Number of unique words |\n| lexical_diversity | float | Type-token ratio (unique_words / words) |\n\n## Updates\n\n- **v1.0** (2026-03-13): Initial release — 4 CSV files covering FY1996–FY2025\n- **v2.0** (2026-03-14): Added item1_yearly_similarity.csv, state_population_1996_2025.csv, competitor_keyword_comparison.csv + per-column schema descriptions",
+  "id": "shiratoriseto/starbucks-30year-nlp-corpus",
+  "licenses": [
+    {
+      "name": "CC0-1.0",
+      "nameNice": "CC0: Public Domain"
+    }
+  ],
+  "keywords": [
+    "nlp",
+    "text mining",
+    "data visualization",
+    "time series analysis",
+    "business"
+  ],
+  "resources": [
+    {
+      "path": "store_counts_timeseries.csv",
+      "description": "30 years of Starbucks store counts by segment (Company-operated/Licensed, US/International) with CEO labels",
+      "schema": {
+        "fields": [
+          {
+            "name": "fiscal_year",
+            "description": "Fiscal year (1996-2025)",
+            "type": "integer"
+          },
+          {
+            "name": "co_us",
+            "description": "Company-operated stores in the US",
+            "type": "integer"
+          },
+          {
+            "name": "co_international",
+            "description": "Company-operated stores outside the US",
+            "type": "integer"
+          },
+          {
+            "name": "lic_us",
+            "description": "Licensed stores in the US",
+            "type": "integer"
+          },
+          {
+            "name": "lic_international",
+            "description": "Licensed stores outside the US",
+            "type": "integer"
+          },
+          {
+            "name": "total_worldwide",
+            "description": "Total store count worldwide",
+            "type": "integer"
+          },
+          {
+            "name": "source_note",
+            "description": "Data extraction note",
+            "type": "string"
+          },
+          {
+            "name": "co_total",
+            "description": "Total company-operated stores",
+            "type": "integer"
+          },
+          {
+            "name": "lic_total",
+            "description": "Total licensed stores",
+            "type": "integer"
+          },
+          {
+            "name": "us_total",
+            "description": "Total US stores",
+            "type": "integer"
+          },
+          {
+            "name": "intl_total",
+            "description": "Total international stores",
+            "type": "integer"
+          },
+          {
+            "name": "pct_licensed",
+            "description": "Percentage of stores that are licensed",
+            "type": "number"
+          },
+          {
+            "name": "pct_international",
+            "description": "Percentage of stores outside the US",
+            "type": "number"
+          },
+          {
+            "name": "yoy_growth",
+            "description": "Year-over-year growth rate (%)",
+            "type": "number"
+          },
+          {
+            "name": "yoy_change",
+            "description": "Year-over-year change in store count",
+            "type": "integer"
+          },
+          {
+            "name": "ceo",
+            "description": "CEO name for the fiscal year",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "path": "item1_lda_topic_proportions.csv",
+      "description": "Year-level topic proportions from 7-topic LDA model trained on 847 text chunks from 30 10-K filings",
+      "schema": {
+        "fields": [
+          {
+            "name": "fiscal_year",
+            "description": "Fiscal year (1996-2025)",
+            "type": "integer"
+          },
+          {
+            "name": "topic_0",
+            "description": "Store Operations topic proportion",
+            "type": "number"
+          },
+          {
+            "name": "topic_1",
+            "description": "Supply Chain & Commodity topic proportion",
+            "type": "number"
+          },
+          {
+            "name": "topic_2",
+            "description": "Leadership & Governance topic proportion",
+            "type": "number"
+          },
+          {
+            "name": "topic_3",
+            "description": "Digital & Loyalty topic proportion",
+            "type": "number"
+          },
+          {
+            "name": "topic_4",
+            "description": "International & IP topic proportion",
+            "type": "number"
+          },
+          {
+            "name": "topic_5",
+            "description": "People, Culture & ESG topic proportion",
+            "type": "number"
+          },
+          {
+            "name": "topic_6",
+            "description": "Product & Competition topic proportion",
+            "type": "number"
+          }
+        ]
+      }
+    },
+    {
+      "path": "item1_basic_stats.csv",
+      "description": "Document-level statistics (word count, sentence count, lexical diversity) for 30 years of 10-K Item 1 text",
+      "schema": {
+        "fields": [
+          {
+            "name": "fiscal_year",
+            "description": "Fiscal year (1996-2025)",
+            "type": "integer"
+          },
+          {
+            "name": "chars",
+            "description": "Total character count",
+            "type": "integer"
+          },
+          {
+            "name": "sentences",
+            "description": "Sentence count",
+            "type": "integer"
+          },
+          {
+            "name": "words",
+            "description": "Word count",
+            "type": "integer"
+          },
+          {
+            "name": "unique_words",
+            "description": "Number of unique words",
+            "type": "integer"
+          },
+          {
+            "name": "lexical_diversity",
+            "description": "Type-token ratio (unique_words / words)",
+            "type": "number"
+          }
+        ]
+      }
+    },
+    {
+      "path": "item1_yearly_similarity.csv",
+      "description": "Year-over-year text similarity (keyword cosine + TF-IDF cosine) for 30 years of 10-K Item 1 text",
+      "schema": {
+        "fields": [
+          {
+            "name": "fiscal_year",
+            "description": "Fiscal year",
+            "type": "integer"
+          },
+          {
+            "name": "prev_year",
+            "description": "Previous fiscal year for comparison",
+            "type": "integer"
+          },
+          {
+            "name": "keyword_cosine_sim",
+            "description": "Cosine similarity of keyword frequency vectors between consecutive years",
+            "type": "number"
+          },
+          {
+            "name": "tfidf_cosine_sim",
+            "description": "Cosine similarity of TF-IDF vectors between consecutive years",
+            "type": "number"
+          }
+        ]
+      }
+    },
+    {
+      "path": "state_population_1996_2025.csv",
+      "description": "US state population estimates (1996-2025) from Census Bureau, for normalizing store density",
+      "schema": {
+        "fields": [
+          {
+            "name": "state",
+            "description": "US state name (including DC)",
+            "type": "string"
+          },
+          {
+            "name": "year",
+            "description": "Calendar year (1996-2025)",
+            "type": "integer"
+          },
+          {
+            "name": "population",
+            "description": "Estimated state population",
+            "type": "integer"
+          }
+        ]
+      }
+    },
+    {
+      "path": "competitor_keyword_comparison.csv",
+      "description": "Keyword frequency comparison across Starbucks, McDonald's, and Dunkin' 10-K filings",
+      "schema": {
+        "fields": [
+          {
+            "name": "document",
+            "description": "Company and fiscal year identifier",
+            "type": "string"
+          },
+          {
+            "name": "total_words",
+            "description": "Total word count of the document",
+            "type": "integer"
+          },
+          {
+            "name": "digital",
+            "description": "Frequency of 'digital' per 10K words",
+            "type": "number"
+          },
+          {
+            "name": "mobile",
+            "description": "Frequency of 'mobile' per 10K words",
+            "type": "number"
+          },
+          {
+            "name": "app",
+            "description": "Frequency of 'app' per 10K words",
+            "type": "number"
+          },
+          {
+            "name": "delivery",
+            "description": "Frequency of 'delivery' per 10K words",
+            "type": "number"
+          },
+          {
+            "name": "drive",
+            "description": "Frequency of 'drive' per 10K words",
+            "type": "number"
+          },
+          {
+            "name": "franchise",
+            "description": "Frequency of 'franchise' per 10K words",
+            "type": "number"
+          },
+          {
+            "name": "licensed",
+            "description": "Frequency of 'licensed' per 10K words",
+            "type": "number"
+          },
+          {
+            "name": "sustainability",
+            "description": "Frequency of 'sustainability' per 10K words",
+            "type": "number"
+          },
+          {
+            "name": "china",
+            "description": "Frequency of 'china' per 10K words",
+            "type": "number"
+          },
+          {
+            "name": "experience",
+            "description": "Frequency of 'experience' per 10K words",
+            "type": "number"
+          },
+          {
+            "name": "technology",
+            "description": "Frequency of 'technology' per 10K words",
+            "type": "number"
+          },
+          {
+            "name": "international",
+            "description": "Frequency of 'international' per 10K words",
+            "type": "number"
+          },
+          {
+            "name": "revenue",
+            "description": "Frequency of 'revenue' per 10K words",
+            "type": "number"
+          },
+          {
+            "name": "customers",
+            "description": "Frequency of 'customers' per 10K words",
+            "type": "number"
+          },
+          {
+            "name": "brand",
+            "description": "Frequency of 'brand' per 10K words",
+            "type": "number"
+          },
+          {
+            "name": "innovation",
+            "description": "Frequency of 'innovation' per 10K words",
+            "type": "number"
+          },
+          {
+            "name": "loyalty",
+            "description": "Frequency of 'loyalty' per 10K words",
+            "type": "number"
+          }
+        ]
+      }
+    },
+    {
+      "path": "item1_keyword_timeseries.csv",
+      "description": "Relative frequency (per 10K words) of 34 strategic keywords from Item 1 (Business) section across 30 fiscal years",
+      "schema": {
+        "fields": [
+          {
+            "name": "fiscal_year",
+            "description": "Fiscal year (1996-2025)",
+            "type": "integer"
+          },
+          {
+            "name": "total_words",
+            "description": "Total word count of the Item 1 section",
+            "type": "integer"
+          },
+          {
+            "name": "digital",
+            "description": "Raw count of 'digital' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "digital_per10k",
+            "description": "Frequency of 'digital' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "mobile",
+            "description": "Raw count of 'mobile' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "mobile_per10k",
+            "description": "Frequency of 'mobile' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "drive",
+            "description": "Raw count of 'drive' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "drive_per10k",
+            "description": "Frequency of 'drive' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "sustainability",
+            "description": "Raw count of 'sustainability' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "sustainability_per10k",
+            "description": "Frequency of 'sustainability' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "partner",
+            "description": "Raw count of 'partner' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "partner_per10k",
+            "description": "Frequency of 'partner' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "partners",
+            "description": "Raw count of 'partners' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "partners_per10k",
+            "description": "Frequency of 'partners' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "experience",
+            "description": "Raw count of 'experience' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "experience_per10k",
+            "description": "Frequency of 'experience' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "china",
+            "description": "Raw count of 'china' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "china_per10k",
+            "description": "Frequency of 'china' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "delivery",
+            "description": "Raw count of 'delivery' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "delivery_per10k",
+            "description": "Frequency of 'delivery' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "rewards",
+            "description": "Raw count of 'rewards' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "rewards_per10k",
+            "description": "Frequency of 'rewards' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "technology",
+            "description": "Raw count of 'technology' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "technology_per10k",
+            "description": "Frequency of 'technology' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "licensed",
+            "description": "Raw count of 'licensed' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "licensed_per10k",
+            "description": "Frequency of 'licensed' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "app",
+            "description": "Raw count of 'app' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "app_per10k",
+            "description": "Frequency of 'app' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "store",
+            "description": "Raw count of 'store' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "store_per10k",
+            "description": "Frequency of 'store' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "stores",
+            "description": "Raw count of 'stores' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "stores_per10k",
+            "description": "Frequency of 'stores' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "revenue",
+            "description": "Raw count of 'revenue' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "revenue_per10k",
+            "description": "Frequency of 'revenue' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "international",
+            "description": "Raw count of 'international' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "international_per10k",
+            "description": "Frequency of 'international' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "customers",
+            "description": "Raw count of 'customers' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "customers_per10k",
+            "description": "Frequency of 'customers' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "beverage",
+            "description": "Raw count of 'beverage' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "beverage_per10k",
+            "description": "Frequency of 'beverage' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "food",
+            "description": "Raw count of 'food' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "food_per10k",
+            "description": "Frequency of 'food' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "brand",
+            "description": "Raw count of 'brand' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "brand_per10k",
+            "description": "Frequency of 'brand' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "innovation",
+            "description": "Raw count of 'innovation' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "innovation_per10k",
+            "description": "Frequency of 'innovation' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "third_place",
+            "description": "Raw count of 'third_place' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "third_place_per10k",
+            "description": "Frequency of 'third_place' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "drive_through",
+            "description": "Raw count of 'drive_through' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "drive_through_per10k",
+            "description": "Frequency of 'drive_through' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "mobile_order",
+            "description": "Raw count of 'mobile_order' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "mobile_order_per10k",
+            "description": "Frequency of 'mobile_order' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "cold_beverage",
+            "description": "Raw count of 'cold_beverage' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "cold_beverage_per10k",
+            "description": "Frequency of 'cold_beverage' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "plant_based",
+            "description": "Raw count of 'plant_based' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "plant_based_per10k",
+            "description": "Frequency of 'plant_based' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "social_responsibility",
+            "description": "Raw count of 'social_responsibility' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "social_responsibility_per10k",
+            "description": "Frequency of 'social_responsibility' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "customer_experience",
+            "description": "Raw count of 'customer_experience' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "customer_experience_per10k",
+            "description": "Frequency of 'customer_experience' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "digital_relationship",
+            "description": "Raw count of 'digital_relationship' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "digital_relationship_per10k",
+            "description": "Frequency of 'digital_relationship' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "starbucks_rewards",
+            "description": "Raw count of 'starbucks_rewards' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "starbucks_rewards_per10k",
+            "description": "Frequency of 'starbucks_rewards' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "coffee",
+            "description": "Raw count of 'coffee' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "coffee_per10k",
+            "description": "Frequency of 'coffee' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "employee",
+            "description": "Raw count of 'employee' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "employee_per10k",
+            "description": "Frequency of 'employee' per 10,000 words",
+            "type": "number"
+          },
+          {
+            "name": "employees",
+            "description": "Raw count of 'employees' in Item 1 text",
+            "type": "integer"
+          },
+          {
+            "name": "employees_per10k",
+            "description": "Frequency of 'employees' per 10,000 words",
+            "type": "number"
+          }
+        ]
+      }
+    },
+    {
+      "path": "item1_raw_texts.csv",
+      "description": "Raw Item 1 (Business) section text from 30 years of Starbucks 10-K filings for LDA/NLP analysis.",
+      "schema": {
+        "fields": [
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year (1996-2025)"
+          },
+          {
+            "name": "text",
+            "type": "string",
+            "description": "Full text of Item 1 (Business) section from 10-K filing"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "title": "Manhattan Café Wars: Starbucks & Subway",
+  "subtitle": "171 Starbucks enriched with PLUTO, MTA, Census & competitor density — open data",
+  "description": "## What's inside\n\nSix analysis-ready files covering Manhattan's café landscape, transit infrastructure, building attributes, and demographics:\n\n### Core files (v1)\n1. **manhattan_starbucks_osm.csv** — 171 Starbucks locations from OpenStreetMap with addresses and amenity attributes\n2. **manhattan_cafes_osm.csv** — 1,335 cafés (Starbucks, Dunkin', branded chains, and independents) with brand classification\n3. **manhattan_mta_ridership_summary.csv** — 123 subway station complexes with average daily ridership (Q4 2024)\n\n### New in v2\n4. **stores_enriched_v3.csv** — 171 Starbucks × 51 columns: OSM attributes + MapPLUTO building data + MTA nearest station + competitor density (250m/500m/1km) + Census ACS demographics + station ridership cluster\n5. **manhattan_tracts_lisa.geojson** — Census Tract polygons with LISA spatial autocorrelation cluster labels (High-High, Low-Low, etc.)\n6. **mta_station_clusters.csv** — 123 stations classified into 4 ridership-pattern clusters (Morning Peak, Balanced, Midday-Heavy, Evening Peak)\n\n## Use cases\n\n- Spatial competition analysis (Starbucks vs. competitors)\n- Spatial autocorrelation (Moran's I, LISA hotspot detection)\n- Point pattern analysis (Ripley's K / Besag's L function)\n- Transit-oriented location scoring\n- Walk-distance network analysis with OSMnx\n- Demand proxy modeling using subway ridership\n- Urban retail geography research\n\n## Data sources & licenses\n\n| File | Source | License |\n|---|---|---|\n| Starbucks & Cafés | OpenStreetMap via Overpass API | ODbL 1.0 |\n| MTA Ridership | data.ny.gov (MTA Subway Hourly Ridership) | OPEN NY Terms |\n| Building attributes | MapPLUTO (NYC Dept. of City Planning) | NYC Open Data Terms |\n| Demographics | US Census ACS 2022 5-Year Estimates | Public domain |\n| Tract boundaries | TIGER/Line Shapefiles (Census Bureau) | Public domain |\n\n**OpenStreetMap attribution**: © OpenStreetMap contributors. Data available under the Open Database License (ODbL) v1.0.\n\n**MTA data**: Provided by the Metropolitan Transportation Authority via New York State Open Data portal.\n\n## Coordinate Reference System\n\nAll coordinates are in **WGS84 (EPSG:4326)** — standard latitude/longitude.\n\n## Column descriptions\n\n### manhattan_starbucks_osm.csv (171 rows × 17 columns)\n\n| Column | Type | Description |\n|---|---|---|\n| osm_id | int | OpenStreetMap element ID |\n| osm_element | str | OSM element type (node/way) |\n| name | str | Store name |\n| brand | str | Brand name (Starbucks) |\n| addr_street | str | Street name (18% missing) |\n| addr_housenumber | str | House number (18% missing) |\n| addr_postcode | str | ZIP code (18% missing) |\n| addr_city | str | City name |\n| phone | str | Phone number (24% missing) |\n| opening_hours | str | Opening hours in OSM format (46% missing) |\n| wheelchair | str | Wheelchair accessibility |\n| outdoor_seating | str | Outdoor seating available |\n| indoor_seating | str | Indoor seating available |\n| drive_through | str | Drive-through available |\n| takeaway | str | Takeaway available |\n| lat | float | Latitude (WGS84) |\n| lon | float | Longitude (WGS84) |\n\n### manhattan_cafes_osm.csv (1,335 rows × 11 columns)\n\n| Column | Type | Description |\n|---|---|---|\n| osm_id | int | OpenStreetMap element ID |\n| osm_element | str | OSM element type |\n| name | str | Café name ('Unknown Café' if missing) |\n| brand | str | Brand name (NaN for independents) |\n| amenity | str | OSM amenity tag |\n| cuisine | str | Cuisine type tag |\n| addr_street | str | Street name |\n| addr_housenumber | str | House number |\n| lat | float | Latitude (WGS84) |\n| lon | float | Longitude (WGS84) |\n| brand_category | str | One of: starbucks, dunkin, branded, independent |\n\n### manhattan_mta_ridership_summary.csv (123 rows × 8 columns)\n\n| Column | Type | Description |\n|---|---|---|\n| station_complex_id | str | MTA station complex identifier |\n| station_name | str | Station name with subway lines |\n| lat | float | Latitude (WGS84) |\n| lon | float | Longitude (WGS84) |\n| avg_daily_ridership | int | Average daily ridership (all fare types combined) |\n| total_ridership_q4_2024 | int | Total ridership Oct-Dec 2024 |\n| data_period | str | Data collection period |\n| data_days | int | Number of days in the period (92) |\n\n### stores_enriched_v3.csv (171 rows × 51 columns)\n\n| Column | Type | Description |\n|---|---|---|\n| osm_id – takeaway | various | Same as manhattan_starbucks_osm.csv (17 columns) |\n| pluto_bbl | float | NYC Borough-Block-Lot identifier |\n| pluto_landuse | float | PLUTO land use code |\n| pluto_bldgclass | str | Building class code |\n| pluto_numfloors | float | Number of floors (9 missing) |\n| pluto_yearbuilt | float | Year built |\n| pluto_unitstotal | float | Total residential units |\n| pluto_retailarea | float | Retail floor area in sq ft (8 missing) |\n| pluto_assesstot | float | Total assessed value |\n| pluto_comarea | float | Commercial floor area in sq ft (8 missing) |\n| pluto_lotarea | float | Lot area in sq ft |\n| pluto_zonedist1 | str | Primary zoning district |\n| pluto_dist_m | float | Distance to matched PLUTO lot (meters) |\n| mta_station_id | str | Nearest MTA station complex ID |\n| mta_station_name | str | Nearest station name |\n| mta_dist_m | float | Distance to nearest station (meters) |\n| mta_avg_daily_ridership | int | Nearest station's average daily ridership |\n| n_starbucks_250m | int | Starbucks count within 250m |\n| n_dunkin_250m | int | Dunkin' count within 250m |\n| n_other_cafe_250m | int | Other café count within 250m |\n| n_starbucks_500m | int | Starbucks count within 500m |\n| n_dunkin_500m | int | Dunkin' count within 500m |\n| n_other_cafe_500m | int | Other café count within 500m |\n| n_starbucks_1000m | int | Starbucks count within 1km |\n| n_dunkin_1000m | int | Dunkin' count within 1km |\n| n_other_cafe_1000m | int | Other café count within 1km |\n| nearest_competitor_dist_m | float | Distance to nearest non-Starbucks café (meters) |\n| nearest_starbucks_dist_m | float | Distance to nearest other Starbucks (meters) |\n| census_tract_id | int | Census Tract GEOID |\n| tract_population | int | Tract total population (ACS 2022) |\n| tract_median_income | float | Tract median household income in dollars (3 missing) |\n| tract_pct_walk_commute | float | Percent of workers who walk to work |\n| tract_pct_bachelors_plus | float | Percent of adults with bachelor's degree or higher |\n| station_cluster | int | MTA station ridership-pattern cluster (0-3) |\n| station_cluster_name | str | Cluster label: Morning Peak / Balanced / Midday-Heavy / Evening Peak |\n\n### manhattan_tracts_lisa.geojson (289 tracts)\n\nCensus Tract polygons with LISA (Local Indicators of Spatial Association) results:\n\n| Property | Type | Description |\n|---|---|---|\n| GEOID | str | Census Tract FIPS code |\n| NAMELSAD | str | Tract name |\n| geometry | Polygon | Tract boundary (WGS84) |\n| starbucks_count | int | Number of Starbucks in this tract |\n| lisa_cluster | str | LISA classification: High-High, Low-Low, High-Low, Low-High, or Not Significant |\n| lisa_q | int | LISA quadrant (1-4) |\n| lisa_p | float | LISA p-value |\n| lisa_I | float | Local Moran's I statistic |\n\n### mta_station_clusters.csv (123 rows × 3 columns)\n\n| Column | Type | Description |\n|---|---|---|\n| station_complex_id | str | MTA station complex identifier (join key) |\n| cluster | int | Cluster assignment (0-3) |\n| cluster_name | str | Morning Peak (Residential) / Balanced (Transit Hub) / Midday-Heavy (Tourism) / Evening Peak (Office) |\n\n## Missing data policy\n\n- **lat/lon**: Never missing (required fields)\n- **name**: Never missing (filled with 'Unknown Café' if absent in OSM)\n- **brand**: NaN for independent cafés (by design, not an error)\n- **Address fields**: NaN where OSM contributors haven't added the information\n- **Ridership**: All 123 stations have ridership > 0\n- **PLUTO fields**: numfloors (9 missing), retailarea/comarea (8 missing) — buildings where PLUTO lacks data\n- **tract_median_income**: 3 missing — Census tracts with suppressed income data\n\n## Updates\n\n- **v1.0** (2026-03-12): Initial release — 3 CSV files with Q4 2024 ridership\n- **v2.0** (2026-03-13): Added stores_enriched_v3.csv (PLUTO + MTA + competitors + Census joined), manhattan_tracts_lisa.geojson (LISA clusters), mta_station_clusters.csv (ridership pattern clusters)",
+  "id": "shiratoriseto/manhattan-cafe-wars",
+  "licenses": [
+    {
+      "name": "ODbL-1.0",
+      "nameNice": "Open Data Commons Open Database License (ODbL) v1.0"
+    }
+  ],
+  "keywords": [
+    "starbucks",
+    "manhattan",
+    "spatial-analysis",
+    "spatial-autocorrelation",
+    "morans-i",
+    "lisa",
+    "ripleys-k",
+    "openstreetmap",
+    "subway-ridership",
+    "osmnx",
+    "geospatial",
+    "cafe",
+    "nyc",
+    "location-analysis",
+    "urban-analytics",
+    "census",
+    "pluto"
+  ],
+  "resources": [
+    {
+      "path": "manhattan_starbucks_osm.csv",
+      "description": "171 Starbucks locations in Manhattan from OpenStreetMap"
+    },
+    {
+      "path": "manhattan_cafes_osm.csv",
+      "description": "1,335 cafés in Manhattan (Starbucks + Dunkin' + branded + independent) from OpenStreetMap"
+    },
+    {
+      "path": "manhattan_mta_ridership_summary.csv",
+      "description": "123 MTA subway station complexes with average daily ridership (Q4 2024)"
+    },
+    {
+      "path": "stores_enriched_v3.csv",
+      "description": "171 Starbucks × 51 columns: OSM + PLUTO building + MTA station + competitor density + Census demographics + station cluster"
+    },
+    {
+      "path": "manhattan_tracts_lisa.geojson",
+      "description": "289 Census Tract polygons with LISA spatial autocorrelation clusters (High-High, Low-Low, etc.)"
+    },
+    {
+      "path": "mta_station_clusters.csv",
+      "description": "123 MTA stations classified into 4 ridership-pattern clusters (Morning/Balanced/Midday/Evening)"
+    }
+  ]
+}
