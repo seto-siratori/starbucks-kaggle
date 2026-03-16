@@ -1,0 +1,14 @@
+{
+  "id": "shiratoriseto/starbucks-lfs-generalization-template",
+  "title": "Starbucks LFS Generalization Template",
+  "code_file": "notebook_generalization_template.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "shiratoriseto/manhattan-cafe-wars"
+  ],
+  "keywords": ["geospatial-analysis", "data-visualization", "feature-engineering"]
+}
