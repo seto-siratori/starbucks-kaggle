@@ -1,0 +1,17 @@
+{
+  "id": "shiratoriseto/starbucks-lfs-model-quick-start-demo",
+  "title": "Starbucks LFS Model: Quick Start Demo",
+  "code_file": "notebook_model_demo.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "shiratoriseto/manhattan-cafe-wars"
+  ],
+  "model_sources": [
+    "shiratoriseto/starbucks-location-fitness-model/other/default/1"
+  ],
+  "keywords": ["regression", "geospatial-analysis", "data-visualization"]
+}

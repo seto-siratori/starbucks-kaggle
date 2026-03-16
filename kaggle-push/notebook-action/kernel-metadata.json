@@ -1,0 +1,17 @@
+{
+  "id": "shiratoriseto/starbucks-strategic-location-insights",
+  "title": "Starbucks Strategic Location Insights",
+  "code_file": "notebook_action_insights.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "shiratoriseto/manhattan-cafe-wars"
+  ],
+  "model_sources": [
+    "shiratoriseto/starbucks-location-fitness-model/other/default/1"
+  ],
+  "keywords": ["geospatial-analysis", "data-visualization", "regression"]
+}
