@@ -1,0 +1,14 @@
+{
+  "id": "shiratoriseto/starbucks-hourly-demand-patterns",
+  "title": "Starbucks Hourly Demand Patterns",
+  "code_file": "notebook_hourly_demand.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "shiratoriseto/manhattan-cafe-wars"
+  ],
+  "keywords": ["geospatial-analysis", "data-visualization", "feature-engineering"]
+}
