@@ -1,2 +1,3 @@
 *.ipynb linguist-language=Python
 kaggle-push/** linguist-vendored
+reports/** linguist-generated
